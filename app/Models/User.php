@@ -42,4 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function userstatus(){
+        return $this->hasOne(UserStatus::class);
+    }
+
+    public function cards(){
+        return $this->hasMany(Card::class);
+    }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
+    public function usercontacts(){
+        return $this->hasMany(User_Contacts::class);
+    }
 }
