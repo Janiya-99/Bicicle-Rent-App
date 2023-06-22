@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
 
-    public function userstatus(){
+    public function userStatus(){
         return $this->hasOne(UserStatus::class);
     }
 
@@ -55,7 +55,9 @@ class User extends Authenticatable
     public function transactions(){
         return $this->hasMany(Transaction::class);
     }
-    public function usercontacts(){
-        return $this->hasMany(User_Contacts::class);
+
+    public function userContacts(){
+        return $this->hasMany(UserContacts::class);
     }
 }
+

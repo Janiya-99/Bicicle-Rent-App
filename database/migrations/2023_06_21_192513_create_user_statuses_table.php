@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_statuses', function (Blueprint $table) {
             $table->id('status_id');
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('status')->default('non-verified');
-            $table->foreign('user_id')
-             ->references('user_id')
-             ->on('users');
             $table->timestamps();
         });
     }

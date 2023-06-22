@@ -27,7 +27,8 @@ class UserFactory extends Factory
             'blood_group' => $this->faker->randomElement(['A-','B-','AB-','O-','A+','B+','AB+','O+']),
             'license_issue_date' => $this->faker->date(),
             'license_expire_date' => $this->faker->date(),
-            'points' => $this->faker->numberBetween(0,1000)
+            'points' => $this->faker->numberBetween(0,1000),
+            'google_id' => $this->faker-> md5
         ];
     }
 

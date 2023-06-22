@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User_Staus;
-use App\Http\Requests\StoreUser_StausRequest;
-use App\Http\Requests\UpdateUser_StausRequest;
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
-class UserStausController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class UserStausController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUser_StausRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class UserStausController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User_Staus $user_Staus)
+    public function show(User $user)
     {
         //
     }
@@ -43,7 +43,7 @@ class UserStausController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User_Staus $user_Staus)
+    public function edit(User $user)
     {
         //
     }
@@ -51,7 +51,7 @@ class UserStausController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUser_StausRequest $request, User_Staus $user_Staus)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
@@ -59,7 +59,7 @@ class UserStausController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User_Staus $user_Staus)
+    public function destroy(User $user)
     {
         //
     }

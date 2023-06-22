@@ -17,8 +17,8 @@ class CardFactory extends Factory
     public function definition(): array
     {
         return [
-            'card_number' => $this->faker->numberBetween(0,10),
-            'security_number' => $this->faker->numberBetween(0,10),
+            'card_number' => $this->faker->creditCardNumber(),
+            'security_number' => $this->faker->numberBetween( 1000, 9000),
         ];
     }
 }

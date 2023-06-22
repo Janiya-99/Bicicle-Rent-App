@@ -9,7 +9,6 @@ class UserStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'user_id = 1 '];
 
     public function user(){
         return $this->belongsTo(User::class);
