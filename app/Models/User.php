@@ -59,5 +59,14 @@ class User extends Authenticatable
     public function userContacts(){
         return $this->hasMany(UserContacts::class);
     }
+
+    public function recentActivies(){
+        return $this->hasMany(RecentActivities::class);
+    }
+
+    public function paths(){
+        return $this->hasMany(Path::class);
+    }
+
 }
 

@@ -12,4 +12,8 @@ class Station extends Model
     public function bicycles(){
         return $this->hasMany(Bicycle::class);
     }
+
+    public function recentActivies(){
+        return $this->hasMany(RecentActivities::class);
+    }
 }

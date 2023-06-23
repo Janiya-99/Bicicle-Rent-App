@@ -9,11 +9,29 @@ class Bicycle extends Model
 {
     use HasFactory;
 
-    public function stations(){
+    public function station(){
         return $this->belongsTo(Station::class);
     }
 
     public function bicycleType(){
         return $this->hasOne(BicycleType::class);
+    }
+
+    public function recentActivies(){
+        return $this->hasMany(RecentActivities::class);
+    }
+
+    public function paths(){
+        return $this->hasMany(Path::class);
+    }
+
+
+    public function emergencies(){
+        return $this->hasMany(Emergency::class);
+    }
+
+
+    public function gps(){
+        return $this->hasMany(Gps::class);
     }
 }

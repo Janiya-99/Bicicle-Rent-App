@@ -5,11 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BicycleType extends Model
+class Emergency extends Model
 {
     use HasFactory;
 
     public function bicycle(){
         return $this->belongsTo(Bicycle::class);
     }
+
+    public function emergencyStatus(){
+        return $this->hasOne(EmergencyStatus::class);
+    }
+
+
+    public function employees(){
+        return $this->belongsToMany(Employ::class);
+    }
+
 }

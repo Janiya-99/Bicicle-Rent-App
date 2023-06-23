@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
-            $table->string('google_id', 255);
+            $table->string('google_id', 255)->unique();
             $table->unsignedBigInteger('status_id')->default(1);
             $table->string('first_name');
             $table->string('last_name');
@@ -26,8 +26,8 @@ return new class extends Migration
             $table->date('license_expire_date');
             $table->integer('points');
             $table->foreign('status_id')
-             ->references('status_id')
-             ->on('user_statuses');
+                ->references('status_id')
+                ->on('user_statuses');
             $table->timestamps();
         });
     }

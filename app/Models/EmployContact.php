@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BicycleType extends Model
+class EmployContact extends Model
 {
     use HasFactory;
 
-    public function bicycle(){
-        return $this->belongsTo(Bicycle::class);
+    public function employ(){
+        return $this->belongsTo(Employ::class);
     }
 }
