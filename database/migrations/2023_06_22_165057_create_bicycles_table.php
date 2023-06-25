@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bicycles', function (Blueprint $table) {
             $table->id('bicycle_id');
-            $table->unsignedBigInteger('type_id')->default(1);
+            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('station_id');
             $table->text('qr_code');
             $table->decimal('live_lang', 9, 6);
@@ -22,10 +22,12 @@ return new class extends Migration
             $table->decimal('temp_pin', 5, 2);
             $table->foreign('type_id')
                 ->references('id')
-                ->on('bicycle_types');
+                ->on('bicycle_types')
+                ->onDelete('cascade');
             $table->foreign('station_id')
                 ->references('station_id')
-                ->on('stations');
+                ->on('stations')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

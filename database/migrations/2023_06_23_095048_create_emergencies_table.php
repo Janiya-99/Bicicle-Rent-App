@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('emergencies', function (Blueprint $table) {
             $table->id('emergency_id');
             $table->unsignedBigInteger('bicycle_id');
-            $table->unsignedBigInteger('emergency_status_id')->default(1);
+            $table->unsignedBigInteger('emergency_status_id');
             $table->decimal('lang', 9, 6);
             $table->decimal('long', 9, 6);
             $table->date('date');
@@ -22,10 +22,12 @@ return new class extends Migration
             $table->text('description');
             $table->foreign('bicycle_id')
                 ->references('bicycle_id')
-                ->on('bicycles');
+                ->on('bicycles')
+                ->onDelete('cascade');
             $table->foreign('emergency_status_id')
                 ->references('emergency_status_id')
-                ->on('emergency_statuses');
+                ->on('emergency_statuses')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

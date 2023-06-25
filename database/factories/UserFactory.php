@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+
+            'status_id' => UserStatus::inRandomOrder()->value('status_id'),
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'date_of_birth' => $this->faker->date(),

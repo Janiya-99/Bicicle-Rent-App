@@ -18,6 +18,11 @@ class Emergency extends Model
     }
 
 
+    public function emergencyEmploy(){
+    return $this->hasMany(EmergencyEmployee::class, 'employee_id');
+    }
+
+
     public function employees(){
         return $this->belongsToMany(Employ::class);
     }

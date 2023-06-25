@@ -19,10 +19,12 @@ return new class extends Migration
             $table->decimal('gps_points_long',9 , 6);
             $table->foreign('path_id')
                 ->references('path_id')
-                ->on('paths');
+                ->on('paths')
+                ->onDelete('cascade');
             $table->foreign('bicycle_id')
                 ->references('bicycle_id')
-                ->on('bicycles');
+                ->on('bicycles')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

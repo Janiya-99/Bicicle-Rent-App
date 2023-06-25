@@ -16,4 +16,8 @@ class Employ extends Model
     public function employContacts(){
         return $this->hasMany(EmployContact::class);
     }
+
+    public function emergencyEmploy(){
+        return $this->hasMany(EmergencyEmployee::class, 'employee_id');
+        }
 }

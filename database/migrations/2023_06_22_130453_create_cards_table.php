@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('security_number');
             $table->foreign('user_id')
                 ->references('user_id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

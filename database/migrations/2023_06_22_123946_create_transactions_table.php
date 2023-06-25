@@ -17,7 +17,8 @@ return new class extends Migration
             $table->decimal('ammount');
             $table->foreign('user_id')
                 ->references('user_id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->dateTime('date_time');
             $table->timestamps();
 

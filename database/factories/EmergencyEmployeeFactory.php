@@ -17,7 +17,7 @@ class EmergencyEmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
 }

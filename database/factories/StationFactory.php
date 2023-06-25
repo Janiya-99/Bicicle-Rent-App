@@ -17,6 +17,7 @@ class StationFactory extends Factory
     public function definition(): array
     {
         return [
+            
             'name' => $this->faker->company(),
             'lang' => $this->faker->latitude(-90,90),
             'long' => $this->faker->longitude(-180,180),

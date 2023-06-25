@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('weather', function (Blueprint $table) {
             $table->id();
-            //$table->unsignedBigInteger('activity_id');
+            $table->unsignedBigInteger('recent_activity_id');
             $table->decimal('wind_speed', 8, 2);
             $table->decimal('temperature', 5, 2);
             $table->integer('visibility');
             $table->decimal('humidity', 5, 2);
             $table->string('weather_status');
-            // $table->foreign('activity_id')
-            //     ->references('activity_id')
-            //     ->on('recent_activities');
+            $table->foreign('recent_activity_id')
+                ->references('activity_id')
+                ->on('recent_activities')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

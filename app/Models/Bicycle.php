@@ -17,8 +17,8 @@ class Bicycle extends Model
         return $this->hasOne(BicycleType::class);
     }
 
-    public function recentActivies(){
-        return $this->hasMany(RecentActivities::class);
+    public function recentActivities(){
+        return $this->hasMany(RecentActivity::class);
     }
 
     public function paths(){

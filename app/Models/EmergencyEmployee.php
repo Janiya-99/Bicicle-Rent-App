@@ -10,10 +10,10 @@ class EmergencyEmployee extends Model
     use HasFactory;
 
     public function emergencies(){
-        return $this->belongsToMany(Emergency::class);
+        return $this->hasMany(Emergency::class);
     }
 
     public function employees(){
-        return $this->belongsToMany(Employ::class);
+        return $this->hasMany(Employ::class);
     }
 }

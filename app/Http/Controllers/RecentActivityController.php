@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RecentActivities;
-use App\Http\Requests\StoreRecentActivitiesRequest;
-use App\Http\Requests\UpdateRecentActivitiesRequest;
+use App\Models\RecentActivity;
+use App\Http\Requests\StoreRecentActivityRequest;
+use App\Http\Requests\UpdateRecentActivityRequest;
 
-class RecentActivitiesController extends Controller
+class RecentActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class RecentActivitiesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRecentActivitiesRequest $request)
+    public function store(StoreRecentActivityRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class RecentActivitiesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RecentActivities $recentActivities)
+    public function show(RecentActivity $recentActivity)
     {
         //
     }
@@ -43,7 +43,7 @@ class RecentActivitiesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RecentActivities $recentActivities)
+    public function edit(RecentActivity $recentActivity)
     {
         //
     }
@@ -51,7 +51,7 @@ class RecentActivitiesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRecentActivitiesRequest $request, RecentActivities $recentActivities)
+    public function update(UpdateRecentActivityRequest $request, RecentActivity $recentActivity)
     {
         //
     }
@@ -59,7 +59,7 @@ class RecentActivitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RecentActivities $recentActivities)
+    public function destroy(RecentActivity $recentActivity)
     {
         //
     }

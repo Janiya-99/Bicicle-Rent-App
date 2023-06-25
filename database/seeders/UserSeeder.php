@@ -20,18 +20,36 @@ class UserSeeder extends Seeder
             ->hasUserContacts(2)
             ->create();
 
-            User::factory()
+        User::factory()
             ->count(2)
             ->hasCards(4)
             ->hasTransactions(4)
             ->hasUserContacts(1)
             ->create();
 
-            User::factory()
+        User::factory()
             ->count(2)
             ->hasCards(1)
             ->hasTransactions(1)
+            ->create();
+
+        User::factory()
+            ->count(12)
             ->hasUserContacts(1)
+            ->create();
+
+        User::factory()
+            ->count(8)
+            ->hasCards(1)
+            ->hasTransactions(5)
+            ->hasUserContacts(1)
+            ->create();
+
+        User::factory()
+            ->count(8)
+            ->hasCards(1)
+            ->hasTransactions(2)
+            ->hasUserContacts(2)
             ->create();
     }
 }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RecentActivities>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\card>
  */
-class RecentActivitiesFactory extends Factory
+class CardFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,10 @@ class RecentActivitiesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'card_number' => $this->faker->numberBetween(0,10),
+            'security_number' => $this->faker->numberBetween(0,10),
+            
         ];
     }
 }

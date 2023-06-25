@@ -17,7 +17,9 @@ class EmergencyStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'emergency_status' => $this->faker->randomElement(['Broken', 'Battey-Low', 'Chain-Break'])
+            
         ];
     }
 }

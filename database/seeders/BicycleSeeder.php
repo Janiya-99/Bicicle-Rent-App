@@ -13,6 +13,25 @@ class BicycleSeeder extends Seeder
      */
     public function run(): void
     {
-    
+        Bicycle::factory()
+            ->count(4)
+            ->hasRecentActivities(2)
+            ->hasPaths(4)
+            ->hasEmergencies(2)
+            ->create();
+
+        Bicycle::factory()
+            ->count(2)
+            ->hasRecentActivities(5)
+            ->hasPaths(2)
+            ->hasEmergencies(3)
+            ->create();
+
+        Bicycle::factory()
+            ->count(5)
+            ->hasRecentActivities(5)
+            ->hasPaths(1)
+            ->hasEmergencies(4)
+            ->create();
     }
 }

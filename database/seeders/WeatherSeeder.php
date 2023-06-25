@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Weather;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,8 @@ class WeatherSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Weather::factory()
+            ->count(20)
+            ->create();
     }
 }

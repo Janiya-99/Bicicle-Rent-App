@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Bicycle;
+use App\Models\EmergencyStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class EmergencyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'bicycle_id' => Bicycle::inRandomOrder()->value('bicycle_id'),
+            'emergency_status_id' => EmergencyStatus::inRandomOrder()->value('emergency_status_id'),
+            'lang' => $this->faker->latitude(-90, 90),
+            'long' => $this->faker->longitude(-180, 180),
+            'date' => $this->faker->date(),
+            'time' => $this->faker->time(),
+            'description' => $this->faker->paragraph(3)
         ];
     }
 }

@@ -10,6 +10,6 @@ class Weather extends Model
     use HasFactory;
 
     public function recentActivity(){
-        return $this->belongsTo(RecentActivities::class);
+        return $this->belongsTo(RecentActivity::class);
     }
 }

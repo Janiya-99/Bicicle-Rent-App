@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\EmergencyStatus;
+use App\Models\Employ;
+use App\Models\PaymentType;
+use App\Models\RecentActivities;
+use App\Models\Station;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserStausSeeder;
 
@@ -22,9 +28,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             UserStatusSeeder::class,
+            PaymentTypeSeeder::class,
+            EmergencyStatusSeeder::class,
             UserSeeder::class,
             BicycleTypeSeeder::class,
-            StationSeeder::class
+            StationSeeder::class,
+            PathSeeder::class,
+            RecentActivitySeeder::class,
+           // WeatherSeeder::class,
+            EmploySeeder::class,
+
         ]);
     }
 }

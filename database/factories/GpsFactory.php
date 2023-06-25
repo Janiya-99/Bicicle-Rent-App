@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Bicycle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class GpsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'bicycle_id' => Bicycle::inRandomOrder()->value('bicycle_id'),
+            'gps_points_lang' => $this->faker->latitude(-90, 90),
+            'gps_points_long' => $this->faker->longitude(-180, 180)
+
         ];
     }
 }

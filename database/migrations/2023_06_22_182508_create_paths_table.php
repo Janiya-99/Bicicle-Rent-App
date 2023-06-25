@@ -21,10 +21,12 @@ return new class extends Migration
             $table->decimal('end_lang', 9, 6);
             $table->foreign('user_id')
                 ->references('user_id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('bicycle_id')
                 ->references('bicycle_id')
-                ->on('bicycles');
+                ->on('bicycles')
+                ->onDelete('cascade');
             $table->float('distance');
             $table->timestamps();
         });

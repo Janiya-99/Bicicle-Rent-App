@@ -17,7 +17,7 @@ class EmployContactFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'contact_number' =>$this->faker->phoneNumber()
         ];
     }
 }

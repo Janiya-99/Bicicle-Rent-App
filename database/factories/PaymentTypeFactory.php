@@ -17,7 +17,10 @@ class PaymentTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
+            'payment_type' => $this->faker->randomElement(['P','U-P']),
+            'description' => $this->faker->paragraph(4),
+
         ];
     }
 }
