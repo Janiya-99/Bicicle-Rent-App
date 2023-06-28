@@ -17,8 +17,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'ammount' => $this->faker->numberBetween(100,100000),
-            'date_time'=> $this->faker->dateTime('now',null)
+            'amount' => $this->faker->numberBetween(100,100000),
         ];
     }
 }

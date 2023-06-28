@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CardController;
+use App\Http\Controllers\Api\V1\TransactionController;
+use App\Http\Controllers\Api\V1\UserContactController;
+use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\UserStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +21,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+// Route::prefix('v1')->group(function(){
+//     Route::apiResource('users', UserController::class);
+//     Route::apiResource('usercontacts', UserContactController::class);
+//     Route::apiResource('cards', CardController::class);
+//     Route::apiResource('cards', CardController::class);
+
+// });
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function(){
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('usercontacts', UserContactController::class);
+    Route::apiResource('cards', CardController::class);
+    Route::apiResource('transactions', TransactionController::class);
+    Route::apiResource('userstatuses', UserStatusController::class);
 });

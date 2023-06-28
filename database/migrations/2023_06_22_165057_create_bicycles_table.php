@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bicycles', function (Blueprint $table) {
             $table->id('bicycle_id');
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('type_id')->default(1);
             $table->unsignedBigInteger('station_id');
             $table->text('qr_code');
             $table->decimal('live_lang', 9, 6);

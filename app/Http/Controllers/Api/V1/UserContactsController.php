@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Models\BicycleType;
-use App\Http\Requests\StoreBicycleTypeRequest;
-use App\Http\Requests\UpdateBicycleTypeRequest;
+use App\Models\UserContact;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\StoreUserContactRequest;
+use App\Http\Requests\V1\UpdateUserContactRequest;
 
-class BicycleTypeController extends Controller
+class UserContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class BicycleTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBicycleTypeRequest $request)
+    public function store(StoreUserContactRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class BicycleTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BicycleType $bicycleType)
+    public function show(UserContact $userContact)
     {
         //
     }
@@ -43,7 +44,7 @@ class BicycleTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BicycleType $bicycleType)
+    public function edit(UserContact $userContacts)
     {
         //
     }
@@ -51,7 +52,7 @@ class BicycleTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBicycleTypeRequest $request, BicycleType $bicycleType)
+    public function update(UpdateUserContactRequest $request, UserContact $userContact)
     {
         //
     }
@@ -59,7 +60,7 @@ class BicycleTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BicycleType $bicycleType)
+    public function destroy(UserContact $userContact)
     {
         //
     }

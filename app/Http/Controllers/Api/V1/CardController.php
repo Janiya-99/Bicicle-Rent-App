@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Models\UserStatus;
-use App\Http\Requests\StoreUserStatusRequest;
-use App\Http\Requests\UpdateUserStatusRequest;
+use App\Models\Card;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\StoreCardRequest;
+use App\Http\Requests\UpdateCardRequest;
 
-class UserStatusController extends Controller
+class CardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Card::all();
     }
 
     /**
@@ -27,7 +28,7 @@ class UserStatusController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserStatusRequest $request)
+    public function store(StoreCardRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class UserStatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserStatus $userStatus)
+    public function show(Card $card)
     {
         //
     }
@@ -43,7 +44,7 @@ class UserStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserStatus $userStatus)
+    public function edit(Card $card)
     {
         //
     }
@@ -51,7 +52,7 @@ class UserStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserStatusRequest $request, UserStatus $userStatus)
+    public function update(UpdateCardRequest $request, Card $card)
     {
         //
     }
@@ -59,7 +60,7 @@ class UserStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserStatus $userStatus)
+    public function destroy(Card $card)
     {
         //
     }

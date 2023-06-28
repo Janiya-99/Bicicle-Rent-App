@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Employ;
+use App\Models\Bicycle;
+use App\Models\EmergencyStatus;
+use App\Models\EmergencyEmployee;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Emergency extends Model
 {

@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Gps;
+use App\Models\Path;
+use App\Models\Station;
+use App\Models\Emergency;
+use App\Models\BicycleType;
+use App\Models\RecentActivity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bicycle extends Model
 {

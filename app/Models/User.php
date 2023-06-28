@@ -3,10 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Path;
+use App\Models\Card;
+use App\Models\UserStatus;
+use App\Models\Transaction;
+use App\Models\UserContact;
+use App\Models\RecentActivity;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -17,10 +23,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
-        'name',
+        'google_id',
+        'status_id,',
+        'first_name',
+        'last_name',
         'email',
-        'password',
+        'date_of_birth',
+        'nic',
+        'licence_id',
+        'blood_group',
+        'license_issue_date',
+        'license_expire_date',
+        'points',
     ];
 
     /**
@@ -43,29 +62,34 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'user_id';
+    }
 
-    public function userStatus(){
-        return $this->hasOne(UserStatus::class);
+    public function userStatus()
+    {
+        return $this->hasOne(UserStatus::class, 'status_id', 'status_id');
     }
 
     public function cards(){
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Card::class, 'user_id');
     }
 
     public function transactions(){
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'user_id');
     }
 
     public function userContacts(){
-        return $this->hasMany(UserContacts::class);
+        return $this->hasMany(UserContact::class, 'user_id');
     }
 
     public function recentActivities(){
-        return $this->hasMany(RecentActivity::class);
+        return $this->hasMany(RecentActivity::class, 'user_id');
     }
 
     public function paths(){
-        return $this->hasMany(Path::class);
+        return $this->hasMany(Path::class, 'user_id');
     }
 
 }
