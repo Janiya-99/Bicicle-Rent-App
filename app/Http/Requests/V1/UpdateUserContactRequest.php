@@ -11,7 +11,7 @@ class UpdateUserContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,32 @@ class UpdateUserContactRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'userId' => ['required'],
+                'contactNumber' => ['required']
+            ];
+        } else {
+            return [
+                'userId' => ['sometimes', 'required'],
+                'contactNumber' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = [
+            'user_id' => $this->userId ? $this->userId : null,
+            'contact_number' => $this->contactNumber ? $this->contactNumber : null
         ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }

@@ -10,6 +10,13 @@ class PaymentType extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'payment_id';
+
+    protected $fillable = [
+        'payment_type',
+        'description'
+    ];
+
     public function recentActivity(){
         return $this->belongsTo(RecentActivity::class);
     }

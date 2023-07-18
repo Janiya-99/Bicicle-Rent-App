@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\EmployContact;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEmployContactRequest;
 use App\Http\Requests\UpdateEmployContactRequest;
+use App\Http\Resources\V1\EmployContactCollection;
+use App\Http\Resources\V1\EmployContactResource;
 
 class EmployContactController extends Controller
 {
@@ -13,7 +16,19 @@ class EmployContactController extends Controller
      */
     public function index()
     {
-        //
+        $employContact = EmployContact::all();
+
+        if($employContact->count() > 0){
+            return response()->json([
+                'status' => 200,
+                'employ contacts' => new EmployContactCollection($employContact)
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Gps Records Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -29,15 +44,40 @@ class EmployContactController extends Controller
      */
     public function store(StoreEmployContactRequest $request)
     {
-        //
+        $employContact = EmployContact::create($request->all());
+
+        if($employContact){
+            return response()->json([
+                'status' => 200,
+                'message' =>'Employ Contact Created Successfully',
+                'employ contacts' => new EmployContactResource($employContact)
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Contact Records Not Found'
+            ], 404);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(EmployContact $employContact)
+    public function show($employContactId)
     {
-        //
+        $employContact = EmployContact::find($employContactId);
+
+        if($employContact){
+            return response()->json([
+                'status' => 200,
+                'employ contacts' => new EmployContactResource($employContact)
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Contact Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -53,7 +93,19 @@ class EmployContactController extends Controller
      */
     public function update(UpdateEmployContactRequest $request, EmployContact $employContact)
     {
-        //
+        if($employContact){
+            $employContact->update($request->all());
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Employ Contact Updated Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Contact Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -61,6 +113,17 @@ class EmployContactController extends Controller
      */
     public function destroy(EmployContact $employContact)
     {
-        //
+        if($employContact){
+            $employContact->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Employ Contact Deleted Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Contact Record Not Found'
+            ], 404);
+        }
     }
 }

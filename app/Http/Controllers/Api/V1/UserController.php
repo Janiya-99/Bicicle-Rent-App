@@ -26,9 +26,10 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'NO Records Found '
+                'message' => 'No User Records Found '
             ], 404);
         }
+
     }
 
     /**
@@ -44,7 +45,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        return new UserResource(User::create($request->all()));
+        $user = User::create($request->all());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'User created successfully',
+            'user' => new UserResource($user)
+        ], 200);
     }
 
     /**
@@ -60,7 +67,7 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'NO  User Records Found '
+                'message' => 'No  User Record Found '
             ], 404);
         }
     }
@@ -79,6 +86,11 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'User  Updated Successfully',
+        ], 200);
     }
 
     /**
@@ -93,11 +105,10 @@ class UserController extends Controller
                 'status' => 200,
                 'message' => 'User Deleted Successfully '
             ], 200);
-
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'NO  User Records Found '
+                'message' => 'NO  User Record Found '
             ], 404);
         }
     }

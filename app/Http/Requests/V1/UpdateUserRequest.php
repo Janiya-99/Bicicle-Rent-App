@@ -54,23 +54,23 @@ class UpdateUserRequest extends FormRequest
     }
 
     protected function prepareForValidation()
-{
-    $data = [
-        'google_id' => $this->googleID ? $this->googleId : null,
-        'first_name' => $this->firstName ? $this->firstName : null,
-        'last_name' => $this->lastName ? $this->lastName : null,
-        'date_of_birth' => $this->dateOfBirth ? $this->dateOfBirth : null,
-        'licence_id' => $this->licenceId ? $this->licenceId : null,
-        'blood_group' => $this->bloodGroup ? $this->bloodGroup : null,
-        'license_issue_date' => $this->licenseIssueDate ? $this->licenseIssueDate : null,
-        'license_expire_date' => $this->licenseExpireDate ? $this->licenseExpireDate : null,
-    ];
+    {
+        $data = [
+            'google_id' => $this->googleId ? $this->googleId : null,
+            'first_name' => $this->firstName ? $this->firstName : null,
+            'last_name' => $this->lastName ? $this->lastName : null,
+            'date_of_birth' => $this->dateOfBirth ? $this->dateOfBirth : null,
+            'licence_id' => $this->licenceId ? $this->licenceId : null,
+            'blood_group' => $this->bloodGroup ? $this->bloodGroup : null,
+            'license_issue_date' => $this->licenseIssueDate ? $this->licenseIssueDate : null,
+            'license_expire_date' => $this->licenseExpireDate ? $this->licenseExpireDate : null,
+        ];
 
-    // Remove properties with null values
-    $data = array_filter($data, function ($value) {
-        return $value !== null;
-    });
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
 
-    $this->merge($data);
-}     
+        $this->merge($data);
+    }
 }

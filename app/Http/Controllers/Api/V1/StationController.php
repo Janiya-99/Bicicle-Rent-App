@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Station;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStationRequest;
 use App\Http\Requests\UpdateStationRequest;
+use App\Http\Resources\V1\Bicycle\StationCollection;
+use App\Http\Resources\V1\Bicycle\StationResource;
 
 class StationController extends Controller
 {
@@ -13,7 +16,19 @@ class StationController extends Controller
      */
     public function index()
     {
-        //
+        $station = Station::all();
+
+        if($station->count() > 0 ){
+            return response()->json([
+                'status' => 200,
+                'stations' => new StationCollection($station)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Station Records Not Found'
+            ], 200);
+        }
     }
 
     /**
@@ -29,7 +44,14 @@ class StationController extends Controller
      */
     public function store(StoreStationRequest $request)
     {
-        //
+        $storeStation = Station::create($request->all());
+        if ($storeStation) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Station Created Successfully',
+                'user contact' => new StationResource($storeStation)
+            ], 200);
+        }
     }
 
     /**
@@ -37,7 +59,17 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        //
+        if($station){
+            return response()->json([
+                'status' => 200,
+                'station' => new StationResource($station)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Station Records Not Found'
+            ], 200);
+        }
     }
 
     /**
@@ -53,7 +85,18 @@ class StationController extends Controller
      */
     public function update(UpdateStationRequest $request, Station $station)
     {
-        //
+        if ($station) {
+            $station->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' => 'Station Updated Succesfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'user contacts' =>'Station Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -61,6 +104,18 @@ class StationController extends Controller
      */
     public function destroy(Station $station)
     {
-        //
+
+        if ($station) {
+            $station->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Station Deleted Succesfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'user contacts' =>'Station Record Not Found'
+            ], 404);
+        }
     }
 }

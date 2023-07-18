@@ -6,6 +6,8 @@ use App\Models\Bicycle;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBicycleRequest;
 use App\Http\Requests\UpdateBicycleRequest;
+use App\Http\Resources\V1\Bicycle\BicycleCollection;
+use App\Http\Resources\V1\Bicycle\BicycleResource;
 
 class BicycleController extends Controller
 {
@@ -14,7 +16,18 @@ class BicycleController extends Controller
      */
     public function index()
     {
-        //
+        $bicycles = Bicycle::all();
+        if ($bicycles->count() > 0) {
+            return response()->json([
+                'status' => 200,
+                'Bicycles' => new BicycleCollection($bicycles)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'No Bicycle Record Found'
+            ], 404);
+        }
     }
 
     /**
@@ -30,7 +43,15 @@ class BicycleController extends Controller
      */
     public function store(StoreBicycleRequest $request)
     {
-        //
+        $storeBicycle = Bicycle::create($request->all());
+
+        if ($storeBicycle) {
+            return response()->json([
+                'status' => 200,
+                'Bicycle' => new BicycleResource($storeBicycle)
+            ], 200);
+        }
+
     }
 
     /**
@@ -38,7 +59,18 @@ class BicycleController extends Controller
      */
     public function show(Bicycle $bicycle)
     {
-        //
+
+        if (!$bicycle) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Bicycle Not Found'
+            ], 404);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'Bicycle' => new BicycleResource($bicycle)
+            ], 200);
+        }
     }
 
     /**
@@ -54,7 +86,19 @@ class BicycleController extends Controller
      */
     public function update(UpdateBicycleRequest $request, Bicycle $bicycle)
     {
-        //
+        
+        if ($bicycle) {
+            $bicycle->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' => 'Bicycle Updated Successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'user contacts' =>'Bicycle Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -62,6 +106,18 @@ class BicycleController extends Controller
      */
     public function destroy(Bicycle $bicycle)
     {
-        //
+
+        if ($bicycle) {
+            $bicycle->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Bicycle Deleted Succesfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'user contacts' =>'Bicycle Record Not Found'
+            ], 404);
+        }
     }
 }

@@ -11,7 +11,7 @@ class StoreUserContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreUserContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'userId' => ['required'],
+            'contactNumber' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->userId,
+            'contact_number' => $this->contactNumber
+        ]);
     }
 }

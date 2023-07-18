@@ -10,6 +10,12 @@ class EmergencyStatus extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'emergency_status_id';
+
+    protected $fillable = [
+        'emergency_status',
+    ];
+
     public function emergency(){
         return $this->belongsTo(Emergency::class);
     }

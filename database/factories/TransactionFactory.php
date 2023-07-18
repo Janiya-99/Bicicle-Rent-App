@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TransactionStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +18,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
+            'transaction_status_id' => TransactionStatus::inRandomOrder()->value('id'),
             'amount' => $this->faker->numberBetween(100,100000),
         ];
     }

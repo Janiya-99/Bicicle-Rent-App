@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Weather;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWeatherRequest;
 use App\Http\Requests\UpdateWeatherRequest;
+use App\Http\Resources\V1\WeatherCollecton;
+use App\Http\Resources\V1\WeatherResource;
 
 class WeatherController extends Controller
 {
@@ -13,7 +16,19 @@ class WeatherController extends Controller
      */
     public function index()
     {
-        //
+        $weather = Weather::all();
+        if($weather->count() > 0){
+            return response()->json([
+                'status' => 200,
+                'weather' => new WeatherCollecton($weather)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Weather Records Not Found'
+            ], 404);
+        }
+
     }
 
     /**
@@ -29,15 +44,40 @@ class WeatherController extends Controller
      */
     public function store(StoreWeatherRequest $request)
     {
-        //
+        $storeWeather = Weather::create($request->all());
+
+        if($storeWeather){
+            return response()->json([
+                'status' => 200,
+                'message' => 'Weather Created Successfully',
+                'weather' => new WeatherResource($storeWeather)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Weather Record Not Found'
+            ], 404);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Weather $weather)
+    public function show($weatherId)
     {
-        //
+        $weather = Weather::find($weatherId);
+
+        if($weather){
+            return response()->json([
+                'status' => 200,
+                'weather' => new WeatherResource($weather)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Weather Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -53,7 +93,18 @@ class WeatherController extends Controller
      */
     public function update(UpdateWeatherRequest $request, Weather $weather)
     {
-        //
+        if($weather){
+            $weather->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' =>'Weather Updated Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Weather Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -61,6 +112,17 @@ class WeatherController extends Controller
      */
     public function destroy(Weather $weather)
     {
-        //
+        if($weather){
+            $weather->delete();
+            return response()->json([
+                'status' => 200,
+                'message' =>'Weather Deleted Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Weather Record Not Found'
+            ], 404);
+        }
     }
 }

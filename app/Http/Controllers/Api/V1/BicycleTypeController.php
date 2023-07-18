@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+
 use App\Models\BicycleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBicycleTypeRequest;
 use App\Http\Requests\UpdateBicycleTypeRequest;
+use App\Http\Resources\V1\Bicycle\BicycleTypeResource;
+use App\Http\Resources\V1\Bicycle\BicycleTypeCollection;
 
 class BicycleTypeController extends Controller
 {
@@ -14,7 +17,18 @@ class BicycleTypeController extends Controller
      */
     public function index()
     {
-        //
+        $bicycleType = BicycleType::all();
+        if ($bicycleType->count() > 0) {
+            return response()->json([
+                'status' => 200,
+                'bicycle types' => new BicycleTypeCollection($bicycleType)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'No Bicycle Record Found'
+            ], 404);
+        }
     }
 
     /**
@@ -30,15 +44,35 @@ class BicycleTypeController extends Controller
      */
     public function store(StoreBicycleTypeRequest $request)
     {
-        //
+        $storeBicycle = BicycleType::create($request->all());
+
+        if ($storeBicycle) {
+            return response()->json([
+                'status' => 200,
+                'bicycle type' => new BicycleTypeCollection($storeBicycle)
+            ], 200);
+        }
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BicycleType $bicycleType)
+    public function show($bicycleTypeId)
     {
-        //
+        $bicycleType = BicycleType::find($bicycleTypeId);
+
+        if (!$bicycleType) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Bicycle Not Found'
+            ], 404);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'bicycle type' => new BicycleTypeResource($bicycleType)
+            ], 200);
+        }
     }
 
     /**
@@ -52,9 +86,22 @@ class BicycleTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBicycleTypeRequest $request, BicycleType $bicycleType)
+    public function update(UpdateBicycleTypeRequest $request, $bicycleTypeId)
     {
-        //
+        $bicycle = BicycleType::find($bicycleTypeId);
+
+        if ($bicycle) {
+            $bicycle->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' => 'Bicycle Type Updated Succesfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'bicycle type' =>'Bicycle Type Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -62,6 +109,18 @@ class BicycleTypeController extends Controller
      */
     public function destroy(BicycleType $bicycleType)
     {
-        //
+
+        if ($bicycleType) {
+            $bicycleType->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Bicycle Type Deleted Succesfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'bicycle type' =>'Bicycle Type Record Not Found'
+            ], 404);
+        }
     }
 }

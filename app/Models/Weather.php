@@ -9,6 +9,15 @@ class Weather extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'recent_activity_id',
+        'wind_speed',
+        'temperature',
+        'visibility',
+        'humidity',
+        'weather_status'
+    ];
+
     public function recentActivity(){
         return $this->belongsTo(RecentActivity::class);
     }

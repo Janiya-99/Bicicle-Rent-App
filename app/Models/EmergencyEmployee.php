@@ -11,6 +11,11 @@ class EmergencyEmployee extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'emergency_id',
+        'employ_id'
+    ];
+
     public function emergencies(){
         return $this->hasMany(Emergency::class);
     }

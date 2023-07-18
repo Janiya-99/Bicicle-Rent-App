@@ -69,28 +69,32 @@ class User extends Authenticatable
 
     public function userStatus()
     {
-        return $this->hasOne(UserStatus::class, 'status_id', 'status_id');
+        return $this->belongsTo(UserStatus::class, 'status_id');
     }
 
-    public function cards(){
+    public function cards()
+    {
         return $this->hasMany(Card::class, 'user_id');
     }
 
-    public function transactions(){
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class, 'user_id');
     }
 
-    public function userContacts(){
+    public function userContacts()
+    {
         return $this->hasMany(UserContact::class, 'user_id');
     }
 
-    public function recentActivities(){
+    public function recentActivities()
+    {
         return $this->hasMany(RecentActivity::class, 'user_id');
     }
 
-    public function paths(){
+    public function paths()
+    {
         return $this->hasMany(Path::class, 'user_id');
     }
 
 }
-

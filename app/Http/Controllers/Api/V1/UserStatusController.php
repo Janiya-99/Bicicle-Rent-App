@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\UserStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserStatusRequest;
-use App\Http\Requests\UpdateUserStatusRequest;
-use App\Http\Resources\V1\UserStatusCollection;
-use App\Http\Resources\V1\UserStatusResource;
+use App\Http\Requests\V1\StoreUserStatusRequest;
+use App\Http\Requests\V1\UpdateUserStatusRequest;
+use App\Http\Resources\V1\User\UserStatusCollection;
+use App\Http\Resources\V1\User\UserStatusResource;
 
 class UserStatusController extends Controller
 {
@@ -16,7 +16,18 @@ class UserStatusController extends Controller
      */
     public function index()
     {
-        return UserStatus::all();
+        $userStatuses = UserStatus::all();
+        if (!$userStatuses->count() > 0) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'User status not found'
+            ], 404);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'user statuses' => new UserStatusCollection($userStatuses)
+            ], 200);
+        }
     }
 
     /**
@@ -24,7 +35,7 @@ class UserStatusController extends Controller
      */
     public function create()
     {
-        return new UserStatusCollection(UserStatus::all());
+        //
     }
 
     /**
@@ -32,22 +43,38 @@ class UserStatusController extends Controller
      */
     public function store(StoreUserStatusRequest $request)
     {
-        //
+        $userStatusStore = UserStatus::create($request->all());
+
+        if ($userStatusStore) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'User Status Store Successfully',
+                'user status' => new UserStatusResource($userStatusStore)
+
+            ], 200);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($userStatus)
+    public function show($userStatusId)
     {
-        $userStatus = UserStatus::where('status_id', $userStatus)->first();
+        $userStatus = UserStatus::find($userStatusId);
 
         if (!$userStatus) {
-            return response()->json(['message' => 'User status not found'], 404);
+            return response()->json([
+                'status' => 404,
+                'message' => 'User status not found'
+            ], 404);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'user status' => new UserStatusResource($userStatus)
+            ], 200);
         }
-
-        return new UserStatusResource($userStatus);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -60,16 +87,42 @@ class UserStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserStatusRequest $request, UserStatus $userStatus)
+    public function update(UpdateUserStatusRequest $request, $statusId)
     {
-        //
+        $userStatus = UserStatus::find($statusId);
+
+        if ($userStatus) {
+            $userStatus->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' => 'User Status Updated Successfully '
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No  User Status Records Found '
+            ], 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserStatus $userStatus)
+    public function destroy($userStatusId)
     {
-        //
+        $userStatus = UserStatus::find($userStatusId);
+
+        if ($userStatus) {
+            $userStatus->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'User Staus Deleted Successfully '
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'NO  User Status Records Found '
+            ], 404);
+        }
     }
 }

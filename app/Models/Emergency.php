@@ -13,6 +13,18 @@ class Emergency extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'emergency_id';
+
+    protected $fillable = [
+        'bicycle_id',
+        'emergency_status_id',
+        'lang',
+        'long',
+        'date',
+        'time',
+        'description'
+    ];
+
     public function bicycle(){
         return $this->belongsTo(Bicycle::class);
     }

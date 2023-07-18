@@ -15,6 +15,18 @@ class Bicycle extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'bicycle_id';
+
+    protected $fillable = [
+        'type_id',
+        'station_id',
+        'status_id ',
+        'qr_code',
+        'live_lang',
+        'live_long',
+        'temp_pin'
+    ];
+
     public function station(){
         return $this->belongsTo(Station::class);
     }
@@ -39,5 +51,10 @@ class Bicycle extends Model
 
     public function gps(){
         return $this->hasMany(Gps::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(BicycleStatus::class);
     }
 }

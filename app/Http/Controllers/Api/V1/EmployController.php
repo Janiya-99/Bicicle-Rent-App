@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Employ;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEmployRequest;
 use App\Http\Requests\UpdateEmployRequest;
+use App\Http\Resources\V1\EmployCollection;
+use App\Http\Resources\V1\EmployResource;
 
 class EmployController extends Controller
 {
@@ -13,7 +16,19 @@ class EmployController extends Controller
      */
     public function index()
     {
-        //
+        $employ = Employ::all();
+
+        if($employ->count() > 0 ){
+            return response()->json([
+                'status' => 200,
+                'employees' => new EmployCollection($employ)
+            ], 200);
+        } else{
+            return response()->json([
+                'status' => 404,
+                'message' =>'Employees Records Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -29,7 +44,14 @@ class EmployController extends Controller
      */
     public function store(StoreEmployRequest $request)
     {
-        //
+        $storeEmploy = Employ::create($request->all());
+
+        if($storeEmploy){
+            return response()->json([
+                'status' => 200,
+                'employ' => new EmployResource($storeEmploy)
+            ], 200);
+        }
     }
 
     /**
@@ -37,7 +59,18 @@ class EmployController extends Controller
      */
     public function show(Employ $employ)
     {
-        //
+
+        if($employ){
+            return response()->json([
+                'status' => 200,
+                'employ' => new EmployResource($employ)
+            ], 200);
+        }else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -51,9 +84,22 @@ class EmployController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEmployRequest $request, Employ $employ)
+    public function update(UpdateEmployRequest $request,  Employ $employ)
     {
-        //
+       
+        if($employ){
+            $employ->update($request->all());
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Employ Updated Succesfully'
+            ], 200);
+        }else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -61,6 +107,18 @@ class EmployController extends Controller
      */
     public function destroy(Employ $employ)
     {
-        //
+        if($employ){
+
+            $employ->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Employ Deleted Succesfully'
+            ], 200);
+        }else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employ Record Not Found'
+            ], 404);
+        }
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1\User;
+namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserContactResource extends JsonResource
+class EmergencyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,8 +14,6 @@ class UserContactResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'contactNumber' => $this->contact_number,
-        ];
+        return parent::toArray($request);
     }
 }

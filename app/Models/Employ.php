@@ -12,6 +12,13 @@ class Employ extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'emp_id';
+
+    protected $fillable = [
+        'name',
+        
+    ];
+
     public function emergencies(){
         return $this->belongsToMany(Emergency::class);
     }

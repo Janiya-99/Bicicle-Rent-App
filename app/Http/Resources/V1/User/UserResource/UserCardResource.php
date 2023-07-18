@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\User\UserResource;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TransactionResource extends JsonResource
+class UserCardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,10 @@ class TransactionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'transactionId' => $this->transaction_id,
-            'userId' => $this->user_id,
-            'amount' => $this->amount,
-            'createdAt' => $this->created_at
 
+            'cardNumber' => $this->card_number,
+            'securityNumber' => $this->security_number,
         ];
     }
+
 }

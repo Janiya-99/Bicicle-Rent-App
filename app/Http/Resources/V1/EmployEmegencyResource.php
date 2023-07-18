@@ -5,7 +5,7 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CardResource extends JsonResource
+class EmployEmegencyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,6 @@ class CardResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'cardId' => $this->card_id,
-            'userId' => $this->user_id,
-            'cardNumber' => $this->card_number,
-            'securityNumber' => $this->security_number,
-        ];
+        return parent::toArray($request);
     }
-
 }

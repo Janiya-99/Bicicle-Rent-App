@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Gps;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGpsRequest;
 use App\Http\Requests\UpdateGpsRequest;
+use App\Http\Resources\V1\GpsCollection;
+use App\Http\Resources\V1\GpsResource;
 
 class GpsController extends Controller
 {
@@ -13,7 +16,19 @@ class GpsController extends Controller
      */
     public function index()
     {
-        //
+        $gps = Gps::all();
+
+        if($gps){
+            return response()->json([
+                'status' => 200,
+                'Gps' => new GpsCollection($gps)
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Gps Records Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -29,15 +44,35 @@ class GpsController extends Controller
      */
     public function store(StoreGpsRequest $request)
     {
-        //
+        $StoreGps = Gps::create($request->all());
+
+        if($StoreGps){
+            return response()->json([
+                'status' => 200,
+                'message' =>'Bicycle Status Created Successfully',
+                'gps' => new GpsResource($StoreGps)
+            ],200);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Gps $gps)
+    public function show($gpsId)
     {
-        //
+        $gps = Gps::find($gpsId);
+
+        if($gps){
+            return response()->json([
+                'status' => 200,
+                'Gps' => new GpsResource($gps)
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Gps Records Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -53,7 +88,18 @@ class GpsController extends Controller
      */
     public function update(UpdateGpsRequest $request, Gps $gps)
     {
-        //
+        if($gps){
+            $gps->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' =>'Bicycle Status Updated Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Bicycle Status Records Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -61,6 +107,17 @@ class GpsController extends Controller
      */
     public function destroy(Gps $gps)
     {
-        //
+        if($gps){
+            $gps->delete();
+            return response()->json([
+                'status' => 200,
+                'message' =>'Gps Deleted Successfully'
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Bicycle Status Records Not Found'
+            ], 404);
+        }
     }
 }

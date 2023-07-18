@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class EmployContact extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'employ_id',
+        'contact_number'
+    ];
 
     public function employ(){
         return $this->belongsTo(Employ::class);

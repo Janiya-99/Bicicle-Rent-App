@@ -15,6 +15,19 @@ class RecentActivity extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'activity_id';
+
+    protected $fillable = [
+        'user_id',
+        'path_id',
+        'station_id',
+        'bicycle_id',
+        'payment_type_id',
+        'date',
+        'start_time',
+        'end_time'
+    ];
+
 
     public function path(){
         return $this->hasOne(Path::class);

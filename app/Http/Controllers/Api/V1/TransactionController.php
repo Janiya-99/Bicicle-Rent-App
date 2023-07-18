@@ -6,7 +6,8 @@ use App\Models\Transaction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
-use App\Http\Resources\V1\TransactionCollection;
+use App\Http\Resources\V1\User\TransactionCollection;
+use App\Http\Resources\V1\User\TransactionResource;
 
 class TransactionController extends Controller
 {
@@ -15,7 +16,20 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return new TransactionCollection(Transaction::all());
+
+        $transactions = Transaction::all();
+
+        if ($transactions->count() > 0) {
+            return response()->json([
+                'status' => 200,
+                'transactions' => new TransactionCollection($transactions)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'NO Records Found '
+            ], 404);
+        }
     }
 
     /**
@@ -31,7 +45,13 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+        $transaction = Transaction::create($request->all());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Transaction created successfully',
+            'transaction' => new TransactionResource($transaction)
+        ]);
     }
 
     /**
@@ -39,7 +59,18 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+
+        if (!$transaction) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'NO Records Found '
+            ], 404);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'transaction' => new TransactionResource($transaction)
+            ], 200);
+        }
     }
 
     /**
@@ -53,16 +84,43 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTransactionRequest $request, Transaction $transaction)
+    public function update(UpdateTransactionRequest $request, $transactionId)
     {
-        //
+        $transaction = Transaction::find($transactionId);
+
+        if (!$transaction) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Transaction not found'
+            ], 404);
+        }
+
+        $transaction->update($request->all());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Transaction Updated Successfully',
+        ], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        if ($transaction) {
+
+            $transaction->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Transaction Deleted Successfully '
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'NO  Transaction Records Found '
+            ], 404);
+        }
     }
 }

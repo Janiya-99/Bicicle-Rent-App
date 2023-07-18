@@ -11,7 +11,7 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,27 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'userId' => ['required'],
+                'ammount' => ['required']
+            ];
+        } else {
+            return [
+                'userId' => ['sometimes', 'required'],
+                'amount' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        if($this->user_id){
+            $this->merge([
+                'user_id' => $this->UserId
+            ]);
+        }
     }
 }
+

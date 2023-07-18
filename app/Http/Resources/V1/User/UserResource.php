@@ -2,10 +2,14 @@
 
 namespace App\Http\Resources\V1\User;
 
-use App\Http\Resources\V1\User\UserCardResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\V1\User\UserContactResource;
-use App\Http\Resources\V1\User\UserTransactionResource;
+use App\Http\Resources\V1\User\UserResource\UserCardResource;
+use App\Http\Resources\V1\User\UserResource\UserContactResource;
+use App\Http\Resources\V1\User\UserResource\UserPathResource;
+use App\Http\Resources\V1\User\UserResource\UserTransactionResource;
+use App\Http\Resources\V1\User\UserResource\UserRecetActivityResource;
+
 
 class UserResource extends JsonResource
 {
@@ -24,12 +28,12 @@ class UserResource extends JsonResource
             'licenseIssueDate' => $this->license_issue_date,
             'licenseExpireDate' => $this->license_expire_date,
             'points' => $this->points,
-            'status' => $this->userStatus->status,
+            'status' => $this->userStatus->status ?? 1 ,
             'contactNumbers' => UserContactResource::collection($this->userContacts),
             'Cards' => UserCardResource::collection($this->cards),
-            'Transactions' => UserTransactionResource::collection($this->transactions),
-            'RecentActivities' => UserRecetActivityResource::collection( $this->recentActivities)
+            'transactions' => UserTransactionResource::collection($this->transactions),
+            'recentActivities' => UserRecetActivityResource::collection($this->recentActivities),
+            'paths' => UserPathResource::collection($this->paths)
         ];
     }
-
 }

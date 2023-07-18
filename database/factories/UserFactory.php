@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TransactionStatus;
 use App\Models\UserStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -35,5 +36,5 @@ class UserFactory extends Factory
         ];
     }
 
-   
+
 }

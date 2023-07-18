@@ -25,6 +25,8 @@ class PathFactory extends Factory
             'start_lang' => $this->faker->latitude(-90, 90),
             'end_long' => $this->faker->longitude(-180, 180),
             'end_lang' => $this->faker->latitude(-90, 90),
+            'start_location' => $this->faker->city(),
+            'end_location' => $this->faker->citySuffix(),
             'distance' => $this->faker->numberBetween(1, 10000) / 100
         ];
     }

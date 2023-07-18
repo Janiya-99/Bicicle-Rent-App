@@ -21,5 +21,5 @@ class UserStatusResource extends JsonResource
         ];
     }
 
-    
+
 }

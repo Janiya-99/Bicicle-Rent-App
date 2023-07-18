@@ -19,6 +19,6 @@ class UserStatus extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'status_id', 'status_id');
+        return $this->hasOne(User::class, 'status_id');
     }
 }

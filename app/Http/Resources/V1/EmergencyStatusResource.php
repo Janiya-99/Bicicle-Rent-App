@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1\User;
+namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserRecetActivityResource extends JsonResource
+class EmergencyStatusResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class UserRecetActivityResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'date' => $this->date,
-            'startTime' => $this->start_time,
-            'endTime' => $this->end_time
-        ];
+        return parent::toArray($request);
     }
 }

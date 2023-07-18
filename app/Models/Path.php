@@ -13,6 +13,20 @@ class Path extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'path_id';
+
+    protected $fillable = [
+        'user_id',
+        'bicycle_id',
+        'start_long',
+        'start_lang',
+        'end_long',
+        'end_lang',
+        'start_location',
+        'end_location',
+        'distance'
+    ];
+
     public function recentActivity(){
         return $this->belongsTo(RecentActivity::class);
     }

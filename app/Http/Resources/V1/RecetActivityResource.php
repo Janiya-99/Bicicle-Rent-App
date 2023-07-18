@@ -14,6 +14,11 @@ class RecetActivityResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'activityId' => $this->activity_id,
+            'date' => $this->date,
+            'startTime' => $this->start_time,
+            'endTime' => $this->end_time
+        ];
     }
 }

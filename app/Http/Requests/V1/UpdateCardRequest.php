@@ -11,7 +11,7 @@ class UpdateCardRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,36 @@ class UpdateCardRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'userId' => ['required'],
+                'cardNumber' => ['required'],
+                'securityNumber' => ['required']
+            ];
+        } else {
+            return [
+                'userId' => ['sometimes', 'required'],
+                'cardNumber' => ['sometimes', 'required'],
+                'securityNumber' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = [
+            'user_id' => $this->userId ? $this->userId : null,
+            'card_number' => $this->cardNumber ? $this->cardNumber : null,
+            'security_number' => $this->securityNumber ? $this->securityNumber : null
         ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }
