@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Path;
 use App\Models\Card;
 use App\Models\UserStatus;
@@ -28,11 +28,11 @@ class User extends Authenticatable
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'google_id',
         'status_id,',
         'first_name',
         'last_name',
         'email',
+        'password',
         'date_of_birth',
         'nic',
         'licence_id',

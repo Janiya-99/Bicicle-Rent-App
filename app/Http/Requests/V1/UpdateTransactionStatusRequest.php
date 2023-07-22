@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,8 +21,23 @@ class UpdateTransactionStatusRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'transactionStatus' => ['required']
+            ];
+        } else {
+            return [
+
+                'transactionStatus' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'transaction_status' => $this->transactionStatus
+        ]);
     }
 }

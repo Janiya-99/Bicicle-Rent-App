@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\TransactionStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTransactionStatusRequest;
-use App\Http\Requests\UpdateTransactionStatusRequest;
-use App\Http\Resources\V1\TransactionStatusCollection;
-use App\Http\Resources\V1\TransactionStatusResource;
+use App\Http\Requests\V1\StoreTransactionStatusRequest;
+use App\Http\Requests\V1\UpdateTransactionStatusRequest;
+use App\Http\Resources\V1\User\TransactionStatusCollection;
+use App\Http\Resources\V1\User\TransactionStatusResource;
 
 class TransactionStatusController extends Controller
 {

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('bicycle_id');
             $table->decimal('start_long', 9, 6);
             $table->decimal('start_lang', 9, 6);
-            $table->decimal('end_long', 9, 6);
-            $table->decimal('end_lang', 9, 6);
+            $table->decimal('end_long', 9, 6)->nullable();
+            $table->decimal('end_lang', 9, 6)->nullable();
             $table->string('start_location');
-            $table->string('end_location');
+            $table->string('end_location')->nullable();
             $table->foreign('user_id')
                 ->references('user_id')
                 ->on('users')

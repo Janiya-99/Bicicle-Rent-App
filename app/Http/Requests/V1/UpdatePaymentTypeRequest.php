@@ -11,7 +11,7 @@ class UpdatePaymentTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,34 @@ class UpdatePaymentTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'payentId' => ['required'],
+                'paymentType' => ['required'],
+                'description' => ['required']
+            ];
+        } else {
+            return [
+                'payentId' => ['sometimes', 'required'],
+                'paymentType' => ['sometimes', 'required'],
+                'description' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = [
+            'payment_id' => $this->paymentId ? $this->paymentId :null,
+            'payment_type' => $this->paymentType ? $this->paymentType : null
         ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }

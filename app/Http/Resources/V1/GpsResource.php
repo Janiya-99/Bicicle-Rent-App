@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources\V1;
 
+use App\Http\Resources\V1\Bicycle\BicycleResource\BicycleResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\V1\User\UserResource\UserPathResource;
 
 class GpsResource extends JsonResource
 {
@@ -14,6 +16,13 @@ class GpsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'gpsId' => $this->gps_id,
+            'pathId'=> new UserPathResource($this->path),
+            'bicycleId'=> new BicycleResource($this->bicycle),
+            'gpsPointsLang'=> $this->gps_points_lang,
+            'gpsPointsLong'=> $this->gps_points_long,
+            'createdAt' => $this->created_at
+        ];
     }
 }

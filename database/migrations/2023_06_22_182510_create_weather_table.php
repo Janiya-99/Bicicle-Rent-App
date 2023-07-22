@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('weather', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recent_activity_id');
-            $table->decimal('wind_speed', 8, 2);
+            $table->decimal('wind_speed', 8, 2)->nullable();
             $table->decimal('temperature', 5, 2);
             $table->integer('visibility');
             $table->decimal('humidity', 5, 2);

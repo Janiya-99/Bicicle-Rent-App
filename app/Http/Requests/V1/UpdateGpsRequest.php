@@ -11,7 +11,7 @@ class UpdateGpsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,38 @@ class UpdateGpsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'pathId' => ['required'],
+                'bicycleId' => ['required'],
+                'gpsPointsLang' => ['required'],
+                'gpsPointsLong' => ['required'],
+            ];
+        } else {
+            return [
+                'pathId' => ['sometimes','required'],
+                'bicycleId' => ['sometimes','required'],
+                'gpsPointsLang' => ['sometimes','required'],
+                'gpsPointsLong' => ['sometimes','required'],
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = [
+            'path_id' => $this->pathId ? $this->pathId : null,
+            'bicycle_id' => $this->bicycleId ? $this->bicycleId : null,
+            'gps_points_lang' => $this->gpsPointsLang ? $this->gpsPointsLang : null,
+            'gps_points_long' => $this->gpsPointsLong ? $this->gpsPointsLong : null,
         ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }

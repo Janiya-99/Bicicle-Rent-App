@@ -6,8 +6,8 @@ use App\Models\PaymentType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePaymentTypeRequest;
 use App\Http\Requests\UpdatePaymentTypeRequest;
-use App\Http\Resources\PaymentTypeCollection;
-use App\Http\Resources\PaymentTypeResource;
+use App\Http\Resources\V1\PaymentTypeCollection;
+use App\Http\Resources\V1\PaymentTypeResource;
 
 class PaymentTypeController extends Controller
 {

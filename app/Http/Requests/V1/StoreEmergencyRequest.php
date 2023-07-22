@@ -11,7 +11,7 @@ class StoreEmergencyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,21 @@ class StoreEmergencyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'bicycleId' => ['required'],
+            'emegencyStatusId' => ['required'],
+            'lang' => ['required'],
+            'long' => ['required'],
+            'date' => ['required'],
+            'time' => ['required'],
+            'description' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'bicycle_id' => $this->bicycle_id,
+            'emergency_status_id' => $this->emegencyStatusId
+        ]);
     }
 }

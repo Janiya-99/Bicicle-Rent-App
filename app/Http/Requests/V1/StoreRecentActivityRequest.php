@@ -22,7 +22,27 @@ class StoreRecentActivityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'userId' => ['required'],
+            'pathId' => ['required'],
+            'stationId' => ['required'],
+            'bicycleId' => ['required'],
+            'paymentTypeId' => ['required'],
+            'date' => ['required'],
+            'startTime' => ['required'],
+            'endTime' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->userId,
+            'path_id' => $this->pathId,
+            'station_id' => $this->stationId,
+            'bicycle_id' => $this->bicycleId,
+            'payment_type_id' => $this->paymentTypeId,
+            'start_time' => $this->startTime,
+            'end_time' => $this->endTime
+        ]);
     }
 }

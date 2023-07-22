@@ -22,7 +22,20 @@ class StoreGpsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pathId' => ['required'],
+            'bicycleId' => ['required'],
+            'gpsPointsLang' => ['required'],
+            'gpsPointsLong' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'path_id' => $this->pathId,
+            'bicycle_id' => $this->bicycleId,
+            'gps_points_lang' => $this->gpsPointsLang,
+            'gps_points_long' => $this->gpsPointsLong,
+        ]);
     }
 }

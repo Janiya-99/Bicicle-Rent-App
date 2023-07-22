@@ -11,7 +11,7 @@ class StorePaymentTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class StorePaymentTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'payentId' => ['required'],
+            'paymentType' => ['required'],
+            'description' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'payment_id' => $this->paymentId,
+            'payment_type' => $this->paymentType
+        ]);
     }
 }

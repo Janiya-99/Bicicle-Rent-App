@@ -15,6 +15,7 @@ class BicycleTypeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'bicycleTypeId'=>$this->id,
             'type' => $this->type,
         ];
     }

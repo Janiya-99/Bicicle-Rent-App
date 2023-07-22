@@ -5,6 +5,7 @@ namespace App\Http\Resources\V1\Bicycle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+
 class StationResource extends JsonResource
 {
     /**
@@ -23,7 +24,7 @@ class StationResource extends JsonResource
             'isOpen' => $this->is_open,
             'addressLine1' => $this->address_line_1,
             'addressLine' => $this->address_line_2,
-            'addressLine3' => $this->address_line_3
+            'addressLine3' => $this->address_line_3,
         ];
     }
 }

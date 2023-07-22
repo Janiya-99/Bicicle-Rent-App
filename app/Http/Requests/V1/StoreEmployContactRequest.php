@@ -11,7 +11,7 @@ class StoreEmployContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreEmployContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'employId' => ['required'],
+            'contactNumber' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'employ_id' => $this->employId,
+            'contact_number' => $this->contactNumber
+        ]);
     }
 }

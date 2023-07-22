@@ -30,27 +30,27 @@ class RecentActivity extends Model
 
 
     public function path(){
-        return $this->hasOne(Path::class);
+        return $this->hasOne(Path::class,'path_id');
     }
 
 
     public function paymentType(){
-        return $this->hasOne(PaymentType::class);
+        return $this->hasOne(PaymentType::class,'payment_id');
     }
 
 
     public function station(){
-        return $this->belongsTo(Station::class);
+        return $this->belongsTo(Station::class,'station_id');
     }
 
 
     public function bicycle(){
-        return $this->belongsTo(Bicycle::class);
+        return $this->belongsTo(Bicycle::class,'bicycle_id');
     }
 
 
     public function weather(){
-        return $this->hasMany(Weather::class);
+        return $this->hasMany(Weather::class,'id');
     }
 
 

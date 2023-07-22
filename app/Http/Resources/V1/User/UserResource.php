@@ -17,10 +17,10 @@ class UserResource extends JsonResource
     {
         return [
             'userId' => $this->user_id,
-            'googleId' => $this->google_id,
             'firstName' => $this->first_name,
             'lastName' => $this->last_name,
             'email' => $this->email,
+            'password'=>$this->password,
             'dateOfBirth' => $this->date_of_birth,
             'nic' => $this->nic,
             'licenceId' => $this->licence_id,

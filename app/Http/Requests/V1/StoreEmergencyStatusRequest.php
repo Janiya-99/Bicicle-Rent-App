@@ -11,7 +11,7 @@ class StoreEmergencyStatusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreEmergencyStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'emergencyStatus' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'emergency_status' => $this->emergencyStatus
+        ]);
     }
 }

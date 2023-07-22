@@ -22,7 +22,20 @@ class StoreWeatherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'recentActivityId' => ['required'],
+            'windSpeed' => ['required'],
+            'temperature' => ['required'],
+            'visibility' => ['required'],
+            'humidity' => ['required'],
+            'weatherStatus' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'recent_activity_id' => $this->recentActivityId,
+            'weather_status' => $this->weatherStatus
+        ]);
     }
 }

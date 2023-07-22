@@ -14,6 +14,10 @@ class EmployContactResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'employId' => $this->employ_id,
+            'contactNumber' => $this->contact_number
+        ];
     }
 }

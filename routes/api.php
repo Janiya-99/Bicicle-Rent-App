@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\V1\EmergencyStatusController;
 use App\Http\Controllers\Api\V1\EmployContactController;
 use App\Http\Controllers\Api\V1\GpsController;
 use App\Http\Controllers\Api\V1\WeatherController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [LoginController::class, 'login']);
 
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function(){
     Route::apiResource('users', UserController::class);

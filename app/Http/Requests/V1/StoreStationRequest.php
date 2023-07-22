@@ -22,7 +22,24 @@ class StoreStationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'lang' => ['required'],
+            'long' => ['required'],
+            'description' => ['required'],
+            'isOpen' => ['required'],
+            'addressLine1' => ['required'],
+            'addressLine2' => ['required'],
+            'addressLine3' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+           'is_open' => $this->isOpen,
+           'address_line_1' => $this->addressLine1,
+           'address_line_1' => $this->addressLine2,
+           'address_line_1' => $this->addressLine3
+        ]);
     }
 }

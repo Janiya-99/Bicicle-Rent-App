@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
-            $table->string('google_id', 255)->unique();
             $table->unsignedBigInteger('status_id')->default(1);
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->date('date_of_birth');
-            $table->string('nic');
-            $table->string('licence_id');
-            $table->string('blood_group');
-            $table->date('license_issue_date');
-            $table->date('license_expire_date');
-            $table->integer('points');
+            $table->string('password');
+            $table->date('date_of_birth')->nullable();
+            $table->string('nic')->nullable();
+            $table->string('licence_id')->nullable();
+            $table->string('blood_group')->nullable();
+            $table->date('license_issue_date')->nullable();
+            $table->date('license_expire_date')->nullable();
+            $table->integer('points')->nullable();
             $table->foreign('status_id')
                 ->references('status_id')
                 ->on('user_statuses')

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1\Bicycle;
+namespace App\Http\Resources\V1\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BicycleStatusResource extends JsonResource
+class TransactionStatusResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,8 @@ class BicycleStatusResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id'=> $this->id,
-        'status' => $this->status
+            'id' => $this->id,
+            'transactionStatus' => $this->transaction_status
         ];
     }
 }

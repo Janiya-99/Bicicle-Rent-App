@@ -19,6 +19,6 @@ class Weather extends Model
     ];
 
     public function recentActivity(){
-        return $this->belongsTo(RecentActivity::class);
+        return $this->belongsTo(RecentActivity::class,'acticity_id');
     }
 }

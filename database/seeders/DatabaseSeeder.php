@@ -16,7 +16,6 @@ use Database\Seeders\BicycleTypeSeeder;
 use Database\Seeders\PaymentTypeSeeder;
 use Database\Seeders\RecentActivitySeeder;
 use Database\Seeders\EmergencyStatusSeeder;
-use Database\Seeders\TransactionTypeSeeder;
 
 
 class DatabaseSeeder extends Seeder

@@ -16,14 +16,14 @@ class Gps extends Model
         'path_id',
         'bicycle_id',
         'gps_points_lang',
-        'gps_points_long'
+        'gps_points_long',
     ];
 
     public function bicycle(){
-        return $this->belongsTo(Bicycle::class);
+        return $this->belongsTo(Bicycle::class,'bicycle_id');
     }
 
     public function path(){
-        return $this->belongsTo(Path::class);
+        return $this->belongsTo(Path::class,'path_id');
     }
 }

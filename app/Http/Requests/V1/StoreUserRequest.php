@@ -22,8 +22,6 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'googleId' => ['required'],
             'firstName' => ['required'],
             'lastName' => ['required'],
             'email' => ['required', 'email'],
@@ -37,9 +35,9 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation(){
+    protected function prepareForValidation()
+    {
         $this->merge([
-            'google_id' => $this->googleId,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'date_of_birth' => $this->dateOfBirth,
@@ -48,6 +46,5 @@ class StoreUserRequest extends FormRequest
             'license_issue_date' => $this->licenseIssueDate,
             'license_expire_date' => $this->licenseExpireDate,
         ]);
-
     }
 }

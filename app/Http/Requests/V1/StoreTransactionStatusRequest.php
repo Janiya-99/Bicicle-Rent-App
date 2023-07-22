@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBicycleStatusRequest extends FormRequest
+class StoreTransactionStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,14 @@ class StoreBicycleStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'transactionStatus' => ['required']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'transaction_status' => $this->transactionStatus
+        ]);
     }
 }

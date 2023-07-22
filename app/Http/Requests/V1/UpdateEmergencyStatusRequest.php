@@ -11,7 +11,7 @@ class UpdateEmergencyStatusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,23 @@ class UpdateEmergencyStatusRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'emergencyStatus' => ['required']
+            ];
+        } else {
+            return [
+
+                'transactionStatus' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'emergency_status' => $this->emergencyStatus
+        ]);
     }
 }

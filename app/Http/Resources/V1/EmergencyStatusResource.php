@@ -14,6 +14,9 @@ class EmergencyStatusResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'emergencyStatusId' => $this->emergency_status_id,
+            'emergencyStatus' => $this->emergency_status
+        ];
     }
 }

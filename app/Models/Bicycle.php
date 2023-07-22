@@ -20,27 +20,30 @@ class Bicycle extends Model
     protected $fillable = [
         'type_id',
         'station_id',
-        'status_id ',
+        'status_id',
         'qr_code',
         'live_lang',
         'live_long',
-        'temp_pin'
+        'temp_pin',
+        'height',
+        'weight',
+        'manufactured'
     ];
 
     public function station(){
-        return $this->belongsTo(Station::class);
+        return $this->belongsTo(Station::class,'station_id');
     }
 
     public function bicycleType(){
-        return $this->hasOne(BicycleType::class);
+        return $this->hasOne(BicycleType::class,'id','type_id');
     }
 
     public function recentActivities(){
-        return $this->hasMany(RecentActivity::class);
+        return $this->hasMany(RecentActivity::class,'activity_id');
     }
 
     public function paths(){
-        return $this->hasMany(Path::class);
+        return $this->hasMany(Path::class,'path_id');
     }
 
 
@@ -50,11 +53,11 @@ class Bicycle extends Model
 
 
     public function gps(){
-        return $this->hasMany(Gps::class);
+        return $this->hasMany(Gps::class,'gps_id');
     }
 
     public function status()
     {
-        return $this->belongsTo(BicycleStatus::class);
+        return $this->belongsTo(BicycleStatus::class,'status_id');
     }
 }

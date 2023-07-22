@@ -11,7 +11,7 @@ class UpdateEmployContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,32 @@ class UpdateEmployContactRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'employId' => ['required'],
+                'contactNumber' => ['required']
+            ];
+        } else {
+            return [
+                'employId' => ['sometimes', 'required'],
+                'contactNumber' => ['sometimes', 'required']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = [
+            'employ_id' => $this->employId ? $this->employId : null,
+            'contact_number' => $this->contactNumber ? $this->contactNumber : null
         ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }

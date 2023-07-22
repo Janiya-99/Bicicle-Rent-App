@@ -11,10 +11,11 @@ class BicycleType extends Model
     use HasFactory;
 
     protected $fillable = [
+
         'type'
     ];
 
     public function bicycle(){
-        return $this->belongsTo(Bicycle::class);
+        return $this->belongsTo(Bicycle::class, 'bicycle_id');
     }
 }

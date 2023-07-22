@@ -14,6 +14,6 @@ class BicycleStatus extends Model
     ];
     public function bicycle()
     {
-        return $this->hasOne(Bicycle::class);
+        return $this->hasOne(Bicycle::class,'status_id');
     }
 }

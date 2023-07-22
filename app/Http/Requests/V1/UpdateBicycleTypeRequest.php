@@ -11,7 +11,7 @@ class UpdateBicycleTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,16 @@ class UpdateBicycleTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'type' => ['required']
+            ];
+        } else {
+            return [
+
+                'type' => ['sometimes', 'required']
+            ];
+        }
     }
 }

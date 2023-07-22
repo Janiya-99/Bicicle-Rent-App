@@ -11,7 +11,7 @@ class StoreBicycleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,34 @@ class StoreBicycleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'bicycleId' => ['required'],
+            'typeId' => ['required'],
+            'station' => ['required'],
+            'statusId' => ['required'],
+            'qrCode' => ['required'],
+            'liveLang' => ['required'],
+            'liveLong' => ['required'],
+            'tempPin' => ['required'],
+            'height' => ['required'],
+            'weight' => ['required'],
+            'manufactured' => ['required'],
+            'gps' => ['required'],
+            'recentActivity' => ['required']
+
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'bicycle_id' =>$this->bicycleId,
+            'type_id' => $this->typeId,
+            'station_id' => $this->stationId,
+            'status_id' => $this->statusId,
+            'qr_code' => $this->qrCode,
+            'live_lang' => $this->liveLang,
+            'live_long' => $this->liveLong,
+            'temp_pin' => $this->tempPin
+        ]);
     }
 }

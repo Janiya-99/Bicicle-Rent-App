@@ -18,8 +18,10 @@ class TransactionResource extends JsonResource
             'transactionId' => $this->transaction_id,
             'userId' => $this->user_id,
             'amount' => $this->amount,
+            'transactionStatus' => new TransactionStatusResource($this->transactionStatus),
             'createdAt' => $this->created_at
 
         ];
+
     }
 }

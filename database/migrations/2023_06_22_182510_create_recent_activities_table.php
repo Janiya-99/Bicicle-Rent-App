@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('payment_type_id')->default(1);
             $table->date('date');
             $table->time('start_time');
-            $table->time('end_time');
+            $table->time('end_time')->nullable();
             $table->foreign('user_id')
                 ->references('user_id')
                 ->on('users')

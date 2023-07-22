@@ -23,7 +23,6 @@ class StoreUserStatusRequest extends FormRequest
     {
         return [
             'status' => ['required'],
-
         ];
     }
 }
