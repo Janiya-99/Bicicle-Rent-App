@@ -15,15 +15,15 @@ class RecentActivitySeeder extends Seeder
     {
         RecentActivity::factory()
             ->count(5)
-            ->hasWeather(4)
+            //->hasWeather(4)
             ->create();
         RecentActivity::factory()
             ->count(4)
-            ->hasWeather(1)
+            //->hasWeather(1)
             ->create();
         RecentActivity::factory()
             ->count(2)
-            ->hasWeather(5)
+           // ->hasWeather(5)
             ->create();
         RecentActivity::factory()
             ->count(1)

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nic')->nullable();
             $table->string('licence_id')->nullable();
             $table->string('blood_group')->nullable();
+            //$table->integer('otp')->nullable();
             $table->date('license_issue_date')->nullable();
             $table->date('license_expire_date')->nullable();
             $table->integer('points')->nullable();

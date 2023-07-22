@@ -1,29 +1,31 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\RequestOtp;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OtpController;
+use App\Http\Controllers\Api\V1\GpsController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Api\V1\CardController;
 use App\Http\Controllers\Api\V1\PathController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Auth\LogOutController;
 use App\Http\Controllers\Api\V1\EmployController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\BicycleController;
 use App\Http\Controllers\Api\V1\StationController;
+use App\Http\Controllers\Api\V1\WeatherController;
+use App\Http\Controllers\Api\V1\EmergencyController;
 use App\Http\Controllers\Api\V1\UserStatusController;
 use App\Http\Controllers\Api\V1\BicycleTypeController;
-use App\Http\Controllers\Api\V1\EmergencyController;
 use App\Http\Controllers\Api\V1\PaymentTypeController;
 use App\Http\Controllers\Api\V1\TransactionController;
 use App\Http\Controllers\Api\V1\UserContactController;
-use App\Http\Controllers\Api\V1\RecentActivityController;
-use App\Http\Controllers\Api\V1\TransactionStatusController;
 use App\Http\Controllers\Api\V1\BicycleStatusController;
-use App\Http\Controllers\Api\V1\EmergencyStatusController;
 use App\Http\Controllers\Api\V1\EmployContactController;
-use App\Http\Controllers\Api\V1\GpsController;
-use App\Http\Controllers\Api\V1\WeatherController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogOutController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\RecentActivityController;
+use App\Http\Controllers\Api\V1\EmergencyStatusController;
+use App\Http\Controllers\Api\V1\TransactionStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LogOutController::class, 'logout']);
+
 
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'middleware' => 'auth:sanctum'], function(){
     Route::apiResource('users', UserController::class);
@@ -65,3 +68,10 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::apiResource('emergencystatuses', EmergencyStatusController::class);
     Route::apiResource('weather', WeatherController::class);
 });
+
+
+
+
+
+
+

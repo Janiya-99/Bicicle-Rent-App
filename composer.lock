@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "93b2bda0aea7c0635fd4ac7e465b0d48",
     "packages": [
         {
             "name": "brick/math",
@@ -431,6 +431,65 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "ferdous/laravel-otp-validate",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ferdousulhaque/laravel-otp-validate.git",
+                "reference": "40fb8009abc8d1d30149471c80bb6fe1286447aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ferdousulhaque/laravel-otp-validate/zipball/40fb8009abc8d1d30149471c80bb6fe1286447aa",
+                "reference": "40fb8009abc8d1d30149471c80bb6fe1286447aa",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ferdous\\OtpValidator\\OtpValidatorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ferdous\\OtpValidator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "A S Md Ferdousul Haque",
+                    "email": "ferdousul.haque@gmail.com"
+                }
+            ],
+            "description": "Laravel package for OTP validation with built-in features like retry and resend mechanism. Built in max retry and max resend blocking. OTP/Security Code can be send over SMS or Email of your choice with user-defined template.",
+            "homepage": "https://github.com/ferdousulhaque/laravel-otp-validate",
+            "keywords": [
+                "email",
+                "laravel",
+                "otp",
+                "otp-validation",
+                "php",
+                "resend",
+                "retry",
+                "security-code",
+                "sms"
+            ],
+            "support": {
+                "issues": "https://github.com/ferdousulhaque/laravel-otp-validate/issues",
+                "source": "https://github.com/ferdousulhaque/laravel-otp-validate/tree/0.2.0"
+            },
+            "time": "2020-08-05T14:41:15+00:00"
         },
         {
             "name": "fruitcake/php-cors",

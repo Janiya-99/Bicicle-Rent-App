@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('live_lang', 9, 6);
             $table->decimal('live_long', 9, 6);
             $table->decimal('temp_pin', 5, 2)->nullable();
-            $table->decimal('height', 4,2);
-            $table->decimal('weight', 4,2);
+            $table->decimal('height', 8,2);
+            $table->decimal('weight', 8,2);
             $table->string('manufactured');
             $table->foreign('type_id')
                 ->references('id')

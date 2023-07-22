@@ -11,6 +11,7 @@ use Database\Seeders\PathSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\EmploySeeder;
 use Database\Seeders\StationSeeder;
+use Database\Seeders\WeatherSeeder;
 use Database\Seeders\UserStatusSeeder;
 use Database\Seeders\BicycleTypeSeeder;
 use Database\Seeders\PaymentTypeSeeder;
@@ -44,7 +45,8 @@ class DatabaseSeeder extends Seeder
             PathSeeder::class,
             GpsSeeder::class,
             RecentActivitySeeder::class,
-            EmploySeeder::class,
+            WeatherSeeder::class,
+        
         ]);
     }
 }
