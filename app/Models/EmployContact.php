@@ -15,6 +15,6 @@ class EmployContact extends Model
     ];
 
     public function employ(){
-        return $this->belongsTo(Employ::class);
+        return $this->belongsTo(Employ::class,'emp_id');
     }
 }

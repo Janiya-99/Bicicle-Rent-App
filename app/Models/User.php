@@ -40,6 +40,7 @@ class User extends Authenticatable
         'license_issue_date',
         'license_expire_date',
         'points',
+        'device_token'
     ];
 
     /**

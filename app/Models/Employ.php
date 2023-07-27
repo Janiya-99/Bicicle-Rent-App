@@ -16,7 +16,7 @@ class Employ extends Model
 
     protected $fillable = [
         'name',
-        
+
     ];
 
     public function emergencies(){
@@ -24,7 +24,7 @@ class Employ extends Model
     }
 
     public function employContacts(){
-        return $this->hasMany(EmployContact::class);
+        return $this->hasMany(EmployContact::class,'emp_id');
     }
 
     public function emergencyEmploy(){

@@ -168,7 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Ferdous\OtpValidator\OtpValidatorServiceProvider::class
+        Ichtrojan\Otp\OtpServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,7 +184,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'OtpValidator' => Ferdous\OtpValidator\OtpValidatorServiceProvider::class
+        'Otp' => Ichtrojan\Otp\Otp::class,
     ])->toArray(),
 
 ];
