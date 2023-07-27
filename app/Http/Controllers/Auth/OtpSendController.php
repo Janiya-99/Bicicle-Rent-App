@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\OtpVerificationRequest;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Expectation;
+use Illuminate\Support\Str;
 
 class OtpSendController extends Controller
 {
@@ -24,31 +26,40 @@ class OtpSendController extends Controller
 
         Auth::user()->save();
 
-        return response()->json(['Token successfully stored.']);
+        return response()->json(['Token successfully stored.'], 200);
     }
 
     public function sendNotification(Request $request)
     {
+       try{
+
+        Auth::user()->device_token =  $request->token;
+        Auth::user()->save();
+
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+        $userId = Auth::user()->user_id;
 
-        $serverKey = 'AAAAeypmfso:APA91bE_G5v_1ua1165UpBrauhCBRUxQO-aPcXpOpLAhDhnggX6OU7ACoDRRwY6JNZbH6YQYs_FxAJL3FkD4FQZDYKkFeoHZXJGLUTzDe17uk3gwgVwmzWol1xOb11SIsov_TWrPXd3m'; // ADD SERVER KEY HERE PROVIDED BY FCM
+        $FcmToken = User::where('user_id',$userId)->value('device_token');
 
+        $otp = $this->otp->generate(Auth::user()->email,4,60);
 
-        $otp = $this->otp->generate(Auth::user()->email,6,60);
 
         $data = [
-            "registration_ids" => $FcmToken,
+            "to" => $FcmToken,
             "notification" => [
-                "title" => $request->title,
-                "body" => "Your OTP is: " . $otp,
+                "body" => serialize($otp)."The following OTP will be expired within 60 seconds" ,
+                "title" => "Bicycle Sharing System Registration",
+                "subtitle" => "Authentication Confirmation Progress",
             ]
         ];
+
         $encodedData = json_encode($data);
+        $fireBaseServerKey = 'AAAAPmviOvc:APA91bF6Yj4f5w8MZQOgMBjbpRIxMO0h01IgluyHt-VjHneOlbjq70b0yL3JUk_lW4D-J5iBDula26El93F6W5iDmCpS61uqjBw0dZhePJkqLCt5sz7hc5hLjAPFwYOvfnLkWCaT_1YQ';
+
 
         $headers = [
-            'Authorization:key=' . $serverKey,
+            'Authorization:key='.$fireBaseServerKey,
             'Content-Type: application/json',
         ];
 
@@ -71,7 +82,13 @@ class OtpSendController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result);
+
+        return response()->json([
+            $data,
+            $otp
+        ]);
+
+       }catch( \Exception $e ){return $e->getMessage();}
     }
 
 
@@ -85,8 +102,7 @@ class OtpSendController extends Controller
         }
         User::where('email', $request->email)->first();
 
-        $sucsess['success'] = 'Email Verified Succesfully';
+        $sucsess['success'] = 'Account Succesfully Registered';
         return response()->json($sucsess,200);
     }
-
 }

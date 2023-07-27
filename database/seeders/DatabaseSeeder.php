@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             GpsSeeder::class,
             RecentActivitySeeder::class,
             WeatherSeeder::class,
-        
+            EmploySeeder::class
         ]);
     }
 }
