@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\V1\EmployContactController;
 use App\Http\Controllers\Api\V1\RecentActivityController;
 use App\Http\Controllers\Api\V1\EmergencyStatusController;
 use App\Http\Controllers\Api\V1\TransactionStatusController;
+use App\Http\Controllers\Auth\ResetPasswordControlller;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LogOutController::class, 'logout']);
 
+
+Route::post('password/forgetpassword', [ResetPasswordControlller::class, 'passwordForget']);
+Route::post('password/resetpassword', [ResetPasswordControlller::class, 'passwordReset']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('update-device-token', [OtpSendController::class, 'updateDeviceToken']);

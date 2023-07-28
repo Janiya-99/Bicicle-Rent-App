@@ -24,7 +24,7 @@ class LoginController extends Controller
 
             return response()->json([
                 'token' => $token,
-                'success' => true,
+                'message' => 'User Log in Successfully',
             ]);
         } else {
 

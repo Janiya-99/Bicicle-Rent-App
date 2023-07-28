@@ -6,12 +6,12 @@ use App\Models\User;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\OtpVerificationRequest;
+use App\Http\Requests\Auth\ForgetPasswordRequest;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Expectation;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\PasswordResetRequest;
 
-class OtpSendController extends Controller
+class ResetPasswordControlller extends Controller
 {
     private $otp;
 
@@ -20,37 +20,32 @@ class OtpSendController extends Controller
         $this->otp = new Otp;
     }
 
-    public function updateDeviceToken(Request $request)
+    public function passwordForget(ForgetPasswordRequest $request)
     {
-        Auth::user()->device_token =  $request->token;
+        $input = $request->only('email');
+        $user = User::where('email', $input)->first();
 
-        Auth::user()->save();
-
-        return response()->json(['Token successfully stored.'], 200);
-    }
-
-    public function sendNotification(Request $request)
-    {
-       try{
-
-        Auth::user()->device_token =  $request->token;
-        Auth::user()->save();
+        if (!$user) {
+            return response()->json([
+                'error' => 'User not found'
+            ], 404);
+        }
 
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $userId = Auth::user()->user_id;
+        //$userId = Auth::user()->user_id;
 
-        $FcmToken = User::where('user_id',$userId)->value('device_token');
+        $FcmToken = $user->device_token;
 
-        $otp = $this->otp->generate(Auth::user()->email,4,60);
+        $otp = $this->otp->generate($user->email, 4, 60);
 
 
         $data = [
             "to" => $FcmToken,
             "notification" => [
-                "body" => serialize($otp)."The following OTP will be expired within 60 seconds" ,
-                "title" => "Bicycle Sharing System Registration",
-                "subtitle" => "Authentication Confirmation Progress",
+                "body" => serialize($otp) . "The following OTP will be expired within 60 seconds",
+                "title" => "Bicycle Sharing System Password Reset",
+                "subtitle" => "Password Reset Progress",
             ]
         ];
 
@@ -59,7 +54,7 @@ class OtpSendController extends Controller
 
 
         $headers = [
-            'Authorization:key='.$fireBaseServerKey,
+            'Authorization:key=' . $fireBaseServerKey,
             'Content-Type: application/json',
         ];
 
@@ -87,24 +82,24 @@ class OtpSendController extends Controller
             $data,
             $otp
         ]);
-
-       }catch( \Exception $e ){return $e->getMessage();}
     }
 
+    public function passwordReset(PasswordResetRequest $request)
+    {
 
-    public function verifyOtp(OtpVerificationRequest $request){
         $otp2 = $this->otp->validate($request->email, $request->otp);
 
-        if(!$otp2->status){
+        if (!$otp2->status) {
             return response()->json([
                 'error' => $otp2
             ], 401);
         }
-        User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
+        $user->update(['password' => Hash::make($request->password)]);
+        $user->tokens()->delete();
 
-    
         return response()->json([
-            'success' => 'Account Succesfully Registered'
-        ],200);
+            'message' => 'Password Reset Successfully'
+        ], 200);
     }
 }
