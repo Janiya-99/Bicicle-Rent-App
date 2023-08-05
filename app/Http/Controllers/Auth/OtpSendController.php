@@ -84,8 +84,8 @@ class OtpSendController extends Controller
         // FCM response
 
         return response()->json([
-            $data,
-            $otp
+           'notification' => $data,
+            'otp data' => $otp
         ]);
 
        }catch( \Exception $e ){return $e->getMessage();}

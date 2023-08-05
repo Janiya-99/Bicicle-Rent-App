@@ -77,3 +77,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::apiResource('emergencystatuses', EmergencyStatusController::class);
     Route::apiResource('weather', WeatherController::class);
 });
+
+

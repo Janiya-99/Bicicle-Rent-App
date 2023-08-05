@@ -22,8 +22,11 @@ class LoginController extends Controller
 
             $token = $user->createToken($request->userAgent())->plainTextToken;
 
+            $statusId = Auth::user()->status_id;
+
             return response()->json([
                 'token' => $token,
+                'status id' => $statusId,
                 'message' => 'User Log in Successfully',
             ]);
         } else {
