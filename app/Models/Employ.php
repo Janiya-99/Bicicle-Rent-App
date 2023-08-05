@@ -16,18 +16,14 @@ class Employ extends Model
 
     protected $fillable = [
         'name',
-
     ];
 
     public function emergencies(){
-        return $this->belongsToMany(Emergency::class);
+        return $this->belongsToMany(Emergency::class, 'emergency_employ', 'employ_id', 'emergency_id');
     }
 
     public function employContacts(){
-        return $this->hasMany(EmployContact::class,'emp_id');
+        return $this->hasMany(EmployContact::class,'employ_id');
     }
 
-    public function emergencyEmploy(){
-        return $this->hasMany(EmergencyEmployee::class, 'employee_id');
-        }
 }

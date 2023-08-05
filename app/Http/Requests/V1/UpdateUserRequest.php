@@ -24,7 +24,6 @@ class UpdateUserRequest extends FormRequest
         $method = $this->method();
         if ($method == 'PUT') {
             return [
-                'googleId' => ['required'],
                 'firstName' => ['required'],
                 'lastName' => ['required'],
                 'email' => ['required', 'email'],
@@ -38,7 +37,6 @@ class UpdateUserRequest extends FormRequest
             ];
         } else {
             return [
-                'googleId' => ['sometimes', 'required'],
                 'firstName' => ['sometimes', 'required'],
                 'lastName' => ['sometimes', 'required'],
                 'email' => ['sometimes', 'required', 'email'],
@@ -56,7 +54,6 @@ class UpdateUserRequest extends FormRequest
     protected function prepareForValidation()
     {
         $data = [
-            'google_id' => $this->googleId ? $this->googleId : null,
             'first_name' => $this->firstName ? $this->firstName : null,
             'last_name' => $this->lastName ? $this->lastName : null,
             'date_of_birth' => $this->dateOfBirth ? $this->dateOfBirth : null,
