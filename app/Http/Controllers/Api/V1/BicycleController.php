@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Bicycle;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBicycleRequest;
-use App\Http\Requests\UpdateBicycleRequest;
-use App\Http\Resources\V1\Bicycle\BicycleCollection;
+use App\Http\Requests\V1\UpdateBicycleRequest;
+use App\Http\Requests\V1\StoreBicycleRequest;
 use App\Http\Resources\V1\Bicycle\BicycleResource;
+use App\Http\Resources\V1\Bicycle\BicycleCollection;
 
 class BicycleController extends Controller
 {
@@ -84,8 +84,9 @@ class BicycleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBicycleRequest $request, Bicycle $bicycle)
+    public function update(UpdateBicycleRequest $request, $bicycleId)
     {
+        $bicycle = Bicycle::find($bicycleId);
         
         if ($bicycle) {
             $bicycle->update($request->all());

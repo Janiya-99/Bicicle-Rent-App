@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Gps;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreGpsRequest;
-use App\Http\Requests\UpdateGpsRequest;
-use App\Http\Resources\V1\GpsCollection;
 use App\Http\Resources\V1\GpsResource;
+use App\Http\Resources\V1\GpsCollection;
+use App\Http\Requests\V1\StoreGpsRequest;
+use App\Http\Requests\V1\UpdateGpsRequest;
 
 class GpsController extends Controller
 {
@@ -49,7 +49,7 @@ class GpsController extends Controller
         if($StoreGps){
             return response()->json([
                 'status' => 200,
-                'message' =>'Bicycle Status Created Successfully',
+                'message' =>'Gps Created Successfully',
                 'gps' => new GpsResource($StoreGps)
             ],200);
         }
@@ -86,18 +86,20 @@ class GpsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGpsRequest $request, Gps $gps)
+    public function update(UpdateGpsRequest $request, $gpsId)
     {
+        $gps = Gps::find($gpsId);
+
         if($gps){
             $gps->update($request->all());
             return response()->json([
                 'status' => 200,
-                'message' =>'Bicycle Status Updated Successfully'
+                'message' =>'Gps Updated Successfully'
             ],200);
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'Bicycle Status Records Not Found'
+                'message' => 'Gps Records Not Found'
             ], 404);
         }
     }
@@ -105,8 +107,9 @@ class GpsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Gps $gps)
+    public function destroy($gpsId)
     {
+        $gps = Gps::find($gpsId);
         if($gps){
             $gps->delete();
             return response()->json([
@@ -116,7 +119,7 @@ class GpsController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'Bicycle Status Records Not Found'
+                'message' => 'Gps Records Not Found'
             ], 404);
         }
     }

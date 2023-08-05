@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\BicycleType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBicycleTypeRequest;
-use App\Http\Requests\UpdateBicycleTypeRequest;
+use App\Http\Requests\V1\StoreBicycleTypeRequest;
+use App\Http\Requests\V1\UpdateBicycleTypeRequest;
 use App\Http\Resources\V1\Bicycle\BicycleTypeResource;
 use App\Http\Resources\V1\Bicycle\BicycleTypeCollection;
 
@@ -49,7 +49,7 @@ class BicycleTypeController extends Controller
         if ($storeBicycle) {
             return response()->json([
                 'status' => 200,
-                'bicycle type' => new BicycleTypeCollection($storeBicycle)
+                'bicycle type' => new BicycleTypeResource($storeBicycle)
             ], 200);
         }
 

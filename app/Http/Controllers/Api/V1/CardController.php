@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Card;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreCardRequest;
-use App\Http\Requests\UpdateCardRequest;
-use App\Http\Resources\V1\User\CardCollection;
+use App\Http\Requests\V1\StoreCardRequest;
+use App\Http\Requests\V1\UpdateCardRequest;
 use App\Http\Resources\V1\User\CardResource;
+use App\Http\Resources\V1\User\CardCollection;
 
 class CardController extends Controller
 {

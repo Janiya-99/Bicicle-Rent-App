@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,9 +22,8 @@ class StoreBicycleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bicycleId' => ['required'],
             'typeId' => ['required'],
-            'station' => ['required'],
+            'stationId' => ['required'],
             'statusId' => ['required'],
             'qrCode' => ['required'],
             'liveLang' => ['required'],
@@ -42,7 +41,6 @@ class StoreBicycleRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'bicycle_id' =>$this->bicycleId,
             'type_id' => $this->typeId,
             'station_id' => $this->stationId,
             'status_id' => $this->statusId,

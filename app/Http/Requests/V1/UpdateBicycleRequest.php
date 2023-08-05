@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,8 @@ class UpdateBicycleRequest extends FormRequest
         $method = $this->method();
         if ($method == 'PUT') {
             return [
-                'bicycleId' => ['required'],
                 'typeId' => ['required'],
-                'station' => ['required'],
+                'stationId' => ['required'],
                 'statusId' => ['required'],
                 'qrCode' => ['required'],
                 'liveLang' => ['required'],
@@ -40,9 +39,8 @@ class UpdateBicycleRequest extends FormRequest
             ];
         } else {
             return [
-                'bicycleId' => ['sometimes', 'required'],
                 'typeId' => ['sometimes', 'required'],
-                'station' => ['sometimes', 'required'],
+                'stationId' => ['sometimes', 'required'],
                 'statusId' => ['sometimes', 'required'],
                 'qrCode' => ['sometimes', 'required'],
                 'liveLang' => ['sometimes', 'required'],
@@ -60,7 +58,6 @@ class UpdateBicycleRequest extends FormRequest
     protected function prepareForValidation()
     {
         $data = [
-            'bicycle_id' => $this->bicycleId ? $this->bicycleId : null,
             'type_id' => $this->typeId ? $this->typeId : null,
             'station_id' => $this->stationId ? $this->stationId : null,
             'status_id' => $this->statusId ? $this->statusId : null,

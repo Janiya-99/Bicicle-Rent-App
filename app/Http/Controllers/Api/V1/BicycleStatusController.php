@@ -89,8 +89,9 @@ class BicycleStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBicycleStatusRequest $request, BicycleStatus $bicycleStatus)
+    public function update(UpdateBicycleStatusRequest $request,$bicycleStatusId)
     {
+        $bicycleStatus = BicycleStatus::find($bicycleStatusId);
         if($bicycleStatus){
             $bicycleStatus->update($request->all());
             return response()->json([
@@ -108,8 +109,9 @@ class BicycleStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BicycleStatus $bicycleStatus)
+    public function destroy($bicycleStatusId)
     {
+        $bicycleStatus = BicycleStatus::find($bicycleStatusId);
         if($bicycleStatus){
             $bicycleStatus->delete();
             return response()->json([

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Gps extends Model
 {
     use HasFactory;
+    
     protected $primaryKey = 'gps_id';
 
     protected $fillable = [

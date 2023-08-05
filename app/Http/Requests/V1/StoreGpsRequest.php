@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class StoreGpsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class StoreGpsRequest extends FormRequest
             'pathId' => ['required'],
             'bicycleId' => ['required'],
             'gpsPointsLang' => ['required'],
-            'gpsPointsLong' => ['required'],
+            'gpsPointsLong' => ['required']
         ];
     }
 
