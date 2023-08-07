@@ -101,9 +101,10 @@ class OtpSendController extends Controller
             ], 401);
         }
         User::where('email', $request->email)->first();
+        $userId =  Auth::user()->user_id;
 
-    
         return response()->json([
+            'userId' => $userId,
             'success' => 'Account Succesfully Registered'
         ],200);
     }

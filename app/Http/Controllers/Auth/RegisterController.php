@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterationRequest;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -20,7 +21,7 @@ class RegisterController extends Controller
         $token = $user->createToken('user', ['app:all'])->plainTextToken;
         return response()->json([
             'token' => $token,
-            'success' => true,
+            'message' => 'User Registerd Successfully'
         ]);
 
         return response()->json($token, 200);
