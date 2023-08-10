@@ -84,8 +84,10 @@ class TransactionStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTransactionStatusRequest $request, TransactionStatus $transactionStatus)
+    public function update(UpdateTransactionStatusRequest $request,$transactionStatusId)
     {
+        $transactionStatus = TransactionStatus::find($transactionStatusId);
+
         if($transactionStatus){
             $transactionStatus->update($request->all());
             return response()->json([
@@ -103,8 +105,10 @@ class TransactionStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TransactionStatus $transactionStatus)
+    public function destroy($transactionStatusId)
     {
+        $transactionStatus = TransactionStatus::find($transactionStatusId);
+
         if($transactionStatus){
             $transactionStatus->delete;
             return response()->json([

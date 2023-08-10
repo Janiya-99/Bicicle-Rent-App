@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,23 +25,30 @@ class UpdateTransactionRequest extends FormRequest
         if ($method == 'PUT') {
             return [
                 'userId' => ['required'],
-                'ammount' => ['required']
+                'amount' => ['required'],
+                'transactionStatusId' => ['required']
             ];
         } else {
             return [
                 'userId' => ['sometimes', 'required'],
-                'amount' => ['sometimes', 'required']
+                'amount' => ['sometimes', 'required'],
+                'transactionStatusId' => ['sometimes', 'required']
             ];
         }
     }
 
     protected function prepareForValidation()
     {
-        if($this->user_id){
-            $this->merge([
-                'user_id' => $this->UserId
-            ]);
-        }
+        $data = [
+            'user_id' => $this->UserId,
+            'transaction_status_id' => $this->transactonStatusId
+        ];
+
+        // Remove properties with null values
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
+        $this->merge($data);
     }
 }
-

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\RecentActivity;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRecentActivityRequest;
-use App\Http\Requests\UpdateRecentActivityRequest;
+use App\Http\Requests\V1\StoreRecentActivityRequest;
+use App\Http\Requests\V1\UpdateRecentActivityRequest;
 use App\Http\Resources\V1\RecetActivityCollection;
 use App\Http\Resources\V1\RecetActivityResource;
 

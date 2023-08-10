@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,14 +23,16 @@ class StoreTransactionRequest extends FormRequest
     {
         return [
             'userId' => ['required'],
-            'ammount' => ['required']
+            'amount' => ['required'],
+            'transactionStatusId' => ['required']
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'user_id' => $this->userId
+            'user_id' => $this->userId,
+            'transaction_status_id' => $this->transactionStatusId
         ]);
     }
 }
