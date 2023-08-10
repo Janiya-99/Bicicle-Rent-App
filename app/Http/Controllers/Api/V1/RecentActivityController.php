@@ -8,6 +8,7 @@ use App\Http\Requests\V1\StoreRecentActivityRequest;
 use App\Http\Requests\V1\UpdateRecentActivityRequest;
 use App\Http\Resources\V1\RecetActivityCollection;
 use App\Http\Resources\V1\RecetActivityResource;
+use App\Http\Resources\V1\User\UserResource\UserRecetActivityResource;
 
 class RecentActivityController extends Controller
 {
@@ -49,7 +50,7 @@ class RecentActivityController extends Controller
        if($storeRecentActivity){
         return response()->json([
             'status' => 200,
-            'recentActivities' => new RecetActivityCollection($storeRecentActivity)
+            'recentActivities' => new UserRecetActivityResource($storeRecentActivity)
         ], 200);
     }
 
