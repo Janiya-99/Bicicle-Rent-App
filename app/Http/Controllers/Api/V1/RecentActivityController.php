@@ -15,9 +15,9 @@ class RecentActivityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($userId)
     {
-        $recentActivity = RecentActivity::all();
+        $recentActivity = RecentActivity::where('user_id', $userId)->get();
 
         if($recentActivity->count() > 0){
             return response()->json([

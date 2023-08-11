@@ -67,6 +67,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::apiResource('stations', StationController::class);
     Route::apiResource('paths', PathController::class);
     Route::apiResource('paymenttypes', PaymentTypeController::class);
+    Route::get('users/{userId}/recent-activities', [RecentActivityController::class, 'index']);
     Route::apiResource('recentactivities', RecentActivityController::class);
     Route::apiResource('employs', EmployController::class);
     Route::apiResource('emergencies', EmergencyController::class);
@@ -76,6 +77,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::apiResource('employcontacts', EmployContactController::class);
     Route::apiResource('emergencystatuses', EmergencyStatusController::class);
     Route::apiResource('weather', WeatherController::class);
+    Route::get('paths/{pathId}/gps', [PathController::class, 'getGpsByPathId']);
 });
 
 

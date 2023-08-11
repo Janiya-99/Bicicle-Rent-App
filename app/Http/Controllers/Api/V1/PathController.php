@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\Gps;
 use App\Models\Path;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePathRequest;
+use App\Http\Requests\V1\StorePathRequest;
 use App\Http\Resources\V1\PathResource;
-use App\Http\Requests\UpdatePathRequest;
+use App\Http\Requests\V1\UpdatePathRequest;
+use App\Http\Resources\V1\GpsCollection;
 use App\Http\Resources\V1\PathCollection;
 
 class PathController extends Controller
@@ -27,6 +29,25 @@ class PathController extends Controller
             return response()->json([
                 'status' => 404,
                 'message' => 'No Paths Records Found'
+            ], 404);
+        }
+    }
+
+    public function getGpsByPathId($pathId)
+    {
+        $gpsDetails = Gps::where('path_id', $pathId)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        if ($gpsDetails->count() > 0) {
+            return response()->json([
+                'status' => 200,
+                'gpsDetails' => $gpsDetails
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No GPS Details Found for this Path'
             ], 404);
         }
     }
@@ -59,14 +80,14 @@ class PathController extends Controller
      */
     public function show(Path $path)
     {
-        if($path){
+        if ($path) {
             return response()->json([
-                'status' =>200,
+                'status' => 200,
                 'path' => new PathResource($path)
             ], 200);
-        }else {
+        } else {
             return response()->json([
-                'status' =>404,
+                'status' => 404,
                 'message' => 'No path Record Found'
             ], 404);
         }
@@ -85,16 +106,16 @@ class PathController extends Controller
      */
     public function update(UpdatePathRequest $request, Path $path)
     {
-        if($path){
+        if ($path) {
             $path->update($request->all());
 
             return response()->json([
-                'status' =>200,
+                'status' => 200,
                 'message' => 'Path Updated Successfully'
             ], 200);
-        }else {
+        } else {
             return response()->json([
-                'status' =>404,
+                'status' => 404,
                 'message' => 'No path Record Found'
             ], 404);
         }
@@ -105,15 +126,15 @@ class PathController extends Controller
      */
     public function destroy(Path $path)
     {
-        if($path){
+        if ($path) {
             $path->delete();
             return response()->json([
-                'status' =>200,
+                'status' => 200,
                 'message' => 'Path Deleted Successfully'
             ], 200);
-        }else {
+        } else {
             return response()->json([
-                'status' =>404,
+                'status' => 404,
                 'message' => 'No path Record Found'
             ], 404);
         }
