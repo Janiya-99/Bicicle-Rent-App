@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('path_id');
             $table->unsignedBigInteger('station_id');
             $table->unsignedBigInteger('bicycle_id');
+            $table->string('amount');
             $table->unsignedBigInteger('payment_type_id')->default(1);
             $table->date('date');
             $table->time('start_time');

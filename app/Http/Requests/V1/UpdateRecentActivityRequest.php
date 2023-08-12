@@ -31,7 +31,8 @@ class UpdateRecentActivityRequest extends FormRequest
                 'paymentTypeId' => ['required'],
                 'date' => ['required'],
                 'startTime' => ['required'],
-                'endTime' => ['required']
+                'endTime' => ['required'],
+                'amount' => ['amount']
             ];
         } else {
             return [
@@ -42,7 +43,8 @@ class UpdateRecentActivityRequest extends FormRequest
                 'paymentTypeId' => ['sometimes', 'required'],
                 'date' => ['sometimes', 'required'],
                 'startTime' => ['sometimes', 'required'],
-                'endTime' => ['sometimes', 'required']
+                'endTime' => ['sometimes', 'required'],
+                'amount' => ['sometimes', 'required']
             ];
         }
     }

@@ -29,7 +29,8 @@ class StoreRecentActivityRequest extends FormRequest
             'paymentTypeId' => ['required'],
             'date' => ['required'],
             'startTime' => ['required'],
-            'endTime' => ['required']
+            'endTime' => ['required'],
+            'amount' => ['required']
         ];
     }
 

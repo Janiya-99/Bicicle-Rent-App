@@ -21,6 +21,7 @@ class RecetActivityResource extends JsonResource
             'date' => $this->date,
             'startTime' => $this->start_time,
             'endTime' => $this->end_time,
+            'amount' => $this->amount,
             'path' => new PathResource($this->path),
         ];
     }

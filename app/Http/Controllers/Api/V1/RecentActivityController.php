@@ -18,11 +18,11 @@ class RecentActivityController extends Controller
     public function index($userId)
     {
         $recentActivity = RecentActivity::where('user_id', $userId)->get();
-
+    
         if($recentActivity->count() > 0){
             return response()->json([
                 'status' => 200,
-                'recentActivities' => new RecetActivityCollection($recentActivity)
+                'recentActivities' => new RecetActivityCollection($recentActivity),
             ], 200);
         }else {
             return response()->json([

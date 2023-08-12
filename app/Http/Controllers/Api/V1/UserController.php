@@ -83,8 +83,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, $userId)
     {
+        $user = User::find($userId);
         $user->update($request->all());
 
         return response()->json([
@@ -96,8 +97,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($userId)
     {
+        $user = User::find($userId);
         if ($user) {
 
             $user->delete();

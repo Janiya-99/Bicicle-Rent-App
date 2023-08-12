@@ -34,6 +34,7 @@ class UpdateUserRequest extends FormRequest
                 'licenseIssueDate' => ['required'],
                 'licenseExpireDate' => ['required'],
                 'points' => ['required'],
+                'statusId' => ['required']
             ];
         } else {
             return [
@@ -47,6 +48,7 @@ class UpdateUserRequest extends FormRequest
                 'licenseIssueDate' => ['sometimes', 'required'],
                 'licenseExpireDate' => ['sometimes', 'required'],
                 'points' => ['sometimes', 'required'],
+                'statusId' => ['sometimes','required']
             ];
         }
     }
@@ -61,6 +63,7 @@ class UpdateUserRequest extends FormRequest
             'blood_group' => $this->bloodGroup ? $this->bloodGroup : null,
             'license_issue_date' => $this->licenseIssueDate ? $this->licenseIssueDate : null,
             'license_expire_date' => $this->licenseExpireDate ? $this->licenseExpireDate : null,
+            'status_id' => $this->statusId ? $this->statusId : null,
         ];
 
         // Remove properties with null values
