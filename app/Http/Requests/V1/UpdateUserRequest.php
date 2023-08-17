@@ -26,6 +26,7 @@ class UpdateUserRequest extends FormRequest
             return [
                 'firstName' => ['required'],
                 'lastName' => ['required'],
+                'statusId' => ['required'],
                 'email' => ['required', 'email'],
                 'dateOfBirth' => ['required'],
                 'nic' => ['required'],
@@ -34,12 +35,12 @@ class UpdateUserRequest extends FormRequest
                 'licenseIssueDate' => ['required'],
                 'licenseExpireDate' => ['required'],
                 'points' => ['required'],
-                'statusId' => ['required']
             ];
         } else {
             return [
                 'firstName' => ['sometimes', 'required'],
                 'lastName' => ['sometimes', 'required'],
+                'statusId' => ['sometimes','required'],
                 'email' => ['sometimes', 'required', 'email'],
                 'dateOfBirth' => ['sometimes', 'required'],
                 'nic' => ['sometimes', 'required'],
@@ -48,7 +49,6 @@ class UpdateUserRequest extends FormRequest
                 'licenseIssueDate' => ['sometimes', 'required'],
                 'licenseExpireDate' => ['sometimes', 'required'],
                 'points' => ['sometimes', 'required'],
-                'statusId' => ['sometimes','required']
             ];
         }
     }

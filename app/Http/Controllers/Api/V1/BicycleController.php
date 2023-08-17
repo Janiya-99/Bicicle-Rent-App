@@ -87,7 +87,7 @@ class BicycleController extends Controller
     public function update(UpdateBicycleRequest $request, $bicycleId)
     {
         $bicycle = Bicycle::find($bicycleId);
-        
+
         if ($bicycle) {
             $bicycle->update($request->all());
             return response()->json([
@@ -97,7 +97,7 @@ class BicycleController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'user contacts' =>'Bicycle Record Not Found'
+                'message' =>'Bicycle Record Not Found'
             ], 404);
         }
     }
@@ -117,7 +117,7 @@ class BicycleController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'user contacts' =>'Bicycle Record Not Found'
+                'message' =>'Bicycle Record Not Found'
             ], 404);
         }
     }

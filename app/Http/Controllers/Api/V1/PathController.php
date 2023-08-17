@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\StorePathRequest;
 use App\Http\Resources\V1\PathResource;
 use App\Http\Requests\V1\UpdatePathRequest;
-use App\Http\Resources\V1\GpsCollection;
 use App\Http\Resources\V1\PathCollection;
 
 class PathController extends Controller

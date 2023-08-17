@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Emergency;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\StoreEmergencyRequest;
-use App\Http\Requests\UpdateEmergencyRequest;
 use App\Http\Resources\V1\EmergencyResource;
 use App\Http\Resources\V1\EmergencyCollection;
+use App\Http\Requests\V1\StoreEmergencyRequest;
+use App\Http\Requests\V1\UpdateEmergencyRequest;
 
 class EmergencyController extends Controller
 {

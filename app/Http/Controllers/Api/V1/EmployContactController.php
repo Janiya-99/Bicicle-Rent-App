@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\EmployContact;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEmployContactRequest;
-use App\Http\Requests\UpdateEmployContactRequest;
-use App\Http\Resources\V1\EmployContactCollection;
 use App\Http\Resources\V1\EmployContactResource;
+use App\Http\Resources\V1\EmployContactCollection;
+use App\Http\Requests\V1\StoreEmployContactRequest;
+use App\Http\Requests\V1\UpdateEmployContactRequest;
 
 class EmployContactController extends Controller
 {

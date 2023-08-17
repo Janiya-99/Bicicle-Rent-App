@@ -29,7 +29,6 @@ class UserController extends Controller
                 'message' => 'No User Records Found '
             ], 404);
         }
-
     }
 
     /**
@@ -86,12 +85,19 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $userId)
     {
         $user = User::find($userId);
-        $user->update($request->all());
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'User  Updated Successfully',
-        ], 200);
+        if ($user) {
+            $user->update($request->all());
+            return response()->json([
+                'status' => 200,
+                'message' => 'User Updated Successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => ' User Record Not Found'
+            ], 404);
+        }
     }
 
     /**
@@ -100,8 +106,8 @@ class UserController extends Controller
     public function destroy($userId)
     {
         $user = User::find($userId);
-        if ($user) {
 
+        if ($user) {
             $user->delete();
             return response()->json([
                 'status' => 200,

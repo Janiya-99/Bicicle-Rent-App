@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Weather;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreWeatherRequest;
-use App\Http\Requests\UpdateWeatherRequest;
-use App\Http\Resources\V1\WeatherCollecton;
 use App\Http\Resources\V1\WeatherResource;
+use App\Http\Resources\V1\WeatherCollecton;
+use App\Http\Requests\V1\StoreWeatherRequest;
+use App\Http\Requests\V1\UpdateWeatherRequest;
 
 class WeatherController extends Controller
 {

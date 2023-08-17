@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\PaymentType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePaymentTypeRequest;
-use App\Http\Requests\UpdatePaymentTypeRequest;
-use App\Http\Resources\V1\PaymentTypeCollection;
 use App\Http\Resources\V1\PaymentTypeResource;
+use App\Http\Resources\V1\PaymentTypeCollection;
+use App\Http\Requests\V1\StorePaymentTypeRequest;
+use App\Http\Requests\V1\UpdatePaymentTypeRequest;
 
 class PaymentTypeController extends Controller
 {

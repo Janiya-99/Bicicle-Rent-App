@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Station;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreStationRequest;
-use App\Http\Requests\UpdateStationRequest;
-use App\Http\Resources\V1\Bicycle\StationCollection;
+use App\Http\Requests\V1\StoreStationRequest;
+use App\Http\Requests\V1\UpdateStationRequest;
 use App\Http\Resources\V1\Bicycle\StationResource;
+use App\Http\Resources\V1\Bicycle\StationCollection;
 
 class StationController extends Controller
 {

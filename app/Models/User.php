@@ -29,7 +29,7 @@ class User extends Authenticatable
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'status_id,',
+        'status_id',
         'first_name',
         'last_name',
         'email',
@@ -64,14 +64,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'user_id';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'user_id';
+    // }
 
     public function userStatus()
     {
-        return $this->belongsTo(UserStatus::class, 'status_id');
+        return $this->belongsTo(UserStatus::class, 'status_id','status_id');
     }
 
     public function cards()
