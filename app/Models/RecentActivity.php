@@ -25,7 +25,8 @@ class RecentActivity extends Model
         'payment_type_id',
         'date',
         'start_time',
-        'end_time'
+        'end_time',
+        'amount'
     ];
 
 

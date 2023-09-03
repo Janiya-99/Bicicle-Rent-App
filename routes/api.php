@@ -81,6 +81,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
 });
 
 
-janith
 
 

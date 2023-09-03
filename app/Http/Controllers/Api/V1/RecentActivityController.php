@@ -50,7 +50,7 @@ class RecentActivityController extends Controller
        if($storeRecentActivity){
         return response()->json([
             'status' => 200,
-            'recentActivities' => new UserRecetActivityResource($storeRecentActivity)
+            'recentActivities' => new RecetActivityResource($storeRecentActivity)
         ], 200);
     }
 
