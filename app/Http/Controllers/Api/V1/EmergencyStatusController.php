@@ -49,12 +49,12 @@ class EmergencyStatusController extends Controller
             return response()->json([
                 'status' => 200,
                 'bicycle Status' => new EmergencyStatusResource($storeEmergencyStatus),
-                'message' =>'Bicycle Status Created Successfully'
+                'message' =>'Emergency Status Created Successfully'
             ],200);
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'Bicycle Status Records Not Found'
+                'message' => 'Emergency Status Records Not Found'
             ], 404);
         }
     }
@@ -115,12 +115,12 @@ class EmergencyStatusController extends Controller
             $emergencyStatus->delete();
             return response()->json([
                 'status' => 200,
-                'message' =>'Bicycle Status Deleted Successfully'
+                'message' =>'Emergency Status Deleted Successfully'
             ],200);
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'Bicycle Status Records Not Found'
+                'message' => 'Emergency Status Records Not Found'
             ], 404);
         }
     }

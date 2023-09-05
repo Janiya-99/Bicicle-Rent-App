@@ -48,7 +48,7 @@ class UpdateEmergencyRequest extends FormRequest
     protected function prepareForValidation()
     {
         $data = [
-            'bicycle_id' => $this->bicycle_id ? $this->bicycle_id : null,
+            'bicycle_id' => $this->bicycleId ? $this->bicycleId : null,
             'emergency_status_id' => $this->emegencyStatusId ? $this->emegencyStatusId : null
         ];
 

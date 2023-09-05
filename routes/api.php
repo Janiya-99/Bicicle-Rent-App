@@ -24,6 +24,8 @@ use App\Http\Controllers\Api\V1\BicycleStatusController;
 use App\Http\Controllers\Api\V1\EmployContactController;
 use App\Http\Controllers\Api\V1\RecentActivityController;
 use App\Http\Controllers\Api\V1\EmergencyStatusController;
+use App\Http\Controllers\Api\V1\NotificationController;
+use App\Http\Controllers\Api\V1\TrackerController;
 use App\Http\Controllers\Api\V1\TransactionStatusController;
 use App\Http\Controllers\Auth\ResetPasswordControlller;
 
@@ -78,6 +80,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::apiResource('emergencystatuses', EmergencyStatusController::class);
     Route::apiResource('weather', WeatherController::class);
     Route::get('paths/{pathId}/gps', [PathController::class, 'getGpsByPathId']);
+    Route::apiResource('notification', NotificationController::class);
+    Route::apiResource('trackers', TrackerController::class);
 });
 
 
