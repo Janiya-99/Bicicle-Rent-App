@@ -103,8 +103,10 @@ class PathController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePathRequest $request, Path $path)
+    public function update(UpdatePathRequest $request, $pathId)
     {
+        $path = Path::find($pathId);
+        
         if ($path) {
             $path->update($request->all());
 
@@ -123,8 +125,10 @@ class PathController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Path $path)
+    public function destroy($pathId)
     {
+        $path = Path::find($pathId);
+
         if ($path) {
             $path->delete();
             return response()->json([

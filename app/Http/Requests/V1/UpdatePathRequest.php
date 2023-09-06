@@ -24,6 +24,7 @@ class UpdatePathRequest extends FormRequest
         $method = $this->method();
         if ($method == 'PUT') {
             return [
+                'userId' => ['required', 'exists:users,user_id'],
                 'bicycleId' => ['required'],
                 'startLong' => ['required'],
                 'startLang' => ['required'],
@@ -35,6 +36,7 @@ class UpdatePathRequest extends FormRequest
             ];
         } else {
             return [
+                'userId' => ['sometimes','required', 'exists:users,user_id'],
                 'bicycleId' => ['sometimes', 'required'],
                 'startLong' => ['sometimes', 'required'],
                 'startLang' => ['sometimes', 'required'],
@@ -50,6 +52,7 @@ class UpdatePathRequest extends FormRequest
     protected function prepareForValidation()
     {
         $data = [
+            'user_id' => $this->userId ? $this->userId : null,
             'bicycle_id' => $this->bicycleId ? $this->bicycleId : null,
             'start_long' => $this->startLong ? $this->startLong : null,
             'start_lang' => $this->startLang ? $this->startLang : null,
