@@ -26,6 +26,7 @@ class RecentActivityFactory extends Factory
             'path_id' => Path::inRandomOrder()->value('path_id'),
             'station_id' => Station::inRandomOrder()->value('station_id'),
             'bicycle_id' => Bicycle::inRandomOrder()->value('bicycle_id'),
+            'amount' => $this->faker->randomFloat(2,0,100),
             'payment_type_id' => PaymentType::inRandomOrder()->value('payment_id'),
             'date' => $this->faker->date(),
             'start_time' => $this->faker->time(),
