@@ -58,6 +58,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('verify-otp', [OtpSendController::class, 'verifyOtp']);
 });
 
+Route::get('/bicycles/{bicycle}', [BicycleController::class, 'show']);
+Route::post('/gps', [GpsController::class, 'store']);
+
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'middleware' => 'auth:sanctum'], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('usercontacts', UserContactController::class);
